@@ -10,6 +10,18 @@
         "outDir": "dist",
         "baseUrl": ".",
         "paths": {
+            "@consts": [
+                "src/consts"
+            ],
+            "@controllers/*": [
+                "src/controllers/*"
+            ],
+            "@models/*": [
+                "src/models/*"
+            ],
+            "@routes/*": [
+                "src/routes/*"
+            ],
             "*": [
                 "node_modules/*",
                 "src/types/*"

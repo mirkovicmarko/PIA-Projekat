@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --black-olive: #3B413C;
+    --opal: #9DB5B2;
+    --light-cyan: #DAF0EE;
+    --middle-blue-green: #94D1BE;
+
+    --background-color: #28282B;
+
+    --border-radius: 15px;
+
+    --form-input-width: 200px;
+    --form-input-font-size: 14px;
+    --form-background-color: var(--text-color);
+
+    --button-padding: 6px;
+    --button-background-color: var(--background-color);
+
+    --link-padding: 6px;
+
+    --text-color: #eaeaea;
+    --text-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+
+    width: 100%;
+    max-width: 1400px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 0;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    font-size: 18px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea {
+    height: 30px;
+    width: var(--form-input-width);
+
+    border-radius: var(--border-radius);
+    border: 1px solid gray;
+    background-color: var(--form-background-color);
+
+    font-size: var(--form-input-font-size);
+}
+
+input[type="time"] {
+    width: fit-content;
+}
+
+a[routerLink] {
+    display: inline-block;
+
+    padding: var(--link-padding);
+    color: var(--text-color);
+    text-decoration: none;
+
+    text-shadow: var(--text-shadow);
+
+    cursor: pointer;
+}
+
+a[routerLink]:hover {
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+button {
+    padding: 4px 5px;
+
+    color: var(--text-color);
+    background-color: transparent;
+
+    cursor: pointer;
+
+    border-radius: var(--border-radius);
+    border: 2px outset var(--middle-blue-green);
+}
+
+button:hover {
+    border-style: inset;
+}

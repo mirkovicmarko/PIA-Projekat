@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    height: 100%;
+    width: 100%;
+}
+
+router-outlet {
+    display: none;
+}
+
+footer { 
+    border-top: 1px var(--opal) solid;
+    padding: 10px;
+    text-align: center;
+}
+
+app-loading {
+    position: relative;
+    margin: auto;
+}
+
+p {
+    text-align: center;
+}

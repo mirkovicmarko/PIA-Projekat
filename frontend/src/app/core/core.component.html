@@ -1,0 +1,13 @@
+<ng-container *ngIf="content_loaded && !error_occured">
+    <app-header></app-header>
+  
+    <router-outlet></router-outlet>
+  
+    <footer>
+      PIA 2023.
+    </footer>
+</ng-container>
+  
+<app-loading *ngIf="!content_loaded && !error_occured"></app-loading>
+
+<p *ngIf="error_occured">Ne može se uspostaviti konekcija ka serveru :( <br /> Greška: {{ error_message }}</p>

@@ -1,0 +1,26 @@
+:host {
+    width: 100px;
+    height: 100px;
+}
+
+div {
+    border: 20px solid whitesmoke;
+    border-top: 20px solid var(--middle-blue-green);
+    border-radius: 50%;
+
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+
+    animation: loading-rotation 2s linear infinite;
+}
+
+@keyframes loading-rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
