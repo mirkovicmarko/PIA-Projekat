@@ -1,5 +1,6 @@
 import { Response } from "express";
 import { InferSchemaType } from "mongoose";
+
 import UserModel from "@models/User";
 import { SESSION_DATA, USER_TYPES } from "@consts";
 

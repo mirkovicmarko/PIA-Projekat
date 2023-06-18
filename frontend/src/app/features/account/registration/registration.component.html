@@ -1,0 +1,133 @@
+<table>
+    <tr>
+        <td colspan="2" style="text-align: center">
+            <span>Tip korisnika: </span>
+            <button (click)="change_user_type()">
+                {{ user.type == USER_TYPES.client ? 'Klijent' : (user.type == USER_TYPES.agency ? 'Agencija' : '???') }}
+            </button>
+        </td>
+    </tr>
+
+    <tr style="border-top: 8px solid transparent">
+        <td>
+            <label for="username">Korisničko ime*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="username" id="username" [(ngModel)]="user.username" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="password">Lozinka*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="password" id="password" [(ngModel)]="user.password" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="password_confirmation">Potvrda lozinke*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="password_confirmation" id="password_confirmation" [(ngModel)]="password_confirmation" />
+        </td>
+    </tr>
+
+    <tr style="border-top: 8px solid transparent">
+        <td>
+            <label for="phone_number">Kontakt telefon*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="phone_number" id="phone_number" [(ngModel)]="user.phone_number" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="email">I-mejl*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="email" id="email" [(ngModel)]="user.email" />
+        </td>
+    </tr>
+
+    <tr style="border-top: 8px solid transparent">
+        <td>
+            <label for="profile_picture">Profilna slika&nbsp;</label>
+        </td>
+        <td>
+            <img *ngIf="user.profile_picture" id="profile_picture" [src]="user.profile_picture" alt="profilna slika" />
+            <input type="file" accept=".png, .jpg, .jpeg" name="profile_picture_change" id="profile_picture_change"
+                (change)="set_profile_picture($event)" />
+        </td>
+    </tr>
+
+    <ng-container *ngIf="user.type == USER_TYPES.client">
+        <tr style="border: 8px solid transparent">
+            <td colspan="2" style="text-align: center">
+                Informacije o klijentu
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="first_name">Ime*&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="first_name" id="first_name" [(ngModel)]="user.client.first_name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="last_name">Prezime*&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="last_name" id="last_name" [(ngModel)]="user.client.last_name" />
+            </td>
+        </tr>
+    </ng-container>
+
+    <ng-container *ngIf="user.type == USER_TYPES.agency">
+        <tr style="border: 8px solid transparent">
+            <td colspan="2" style="text-align: center">
+                Informacije o agenciji
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="name">Naziv*&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="name" id="name" [(ngModel)]="user.agency.name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="address">Adresa*&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="address" id="address" [(ngModel)]="user.agency.address" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="id">Matični broj*&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="id" id="id" [(ngModel)]="user.agency.id" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="description">Opis*&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="description" id="description" [(ngModel)]="user.agency.description" />
+            </td>
+        </tr>
+    </ng-container>
+</table>
+
+<p class="errors" *ngFor="let error of errors">{{ error }}</p>
+
+<p class="messages" *ngFor="let message of messages">{{ message }}</p>
+
+<button id="button_register" (click)="register()">Registruj se</button>

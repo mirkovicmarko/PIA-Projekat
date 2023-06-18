@@ -7,6 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FeaturesModule } from '@features/features.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     CoreRoutingModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    FeaturesModule
   ],
   exports: [
     CoreComponent

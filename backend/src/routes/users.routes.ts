@@ -10,9 +10,9 @@ users_router.route('/login')
     .post((req: express.Request, res: express.Response) => users_controller.login(req, res, false));
 users_router.route('/login_admin')
     .post((req: express.Request, res: express.Response) => users_controller.login(req, res, false));
-/*
 users_router.route('/register')
-    .post((req: express.Request, res: express.Response) => users_controller.register(req, res, true));
+    .post((req: express.Request, res: express.Response) => users_controller.register(req, res));
+/*
 users_router.route('/change_info')
     .post((req: express.Request, res: express.Response) => users_controller.change_info(req, res));
 users_router.route('/get_info')

@@ -1,3 +1,5 @@
+import { USER_TYPES } from "@shared/consts";
+
 export default class User {
     _id: number;
     username: string = "";
@@ -6,18 +8,26 @@ export default class User {
     email: string = "";
     approved: boolean;
 	banned: boolean;
-    type: string = "";
+    type: string = USER_TYPES.client;
     profile_picture: string = null;
 
     client: {
         first_name: string,
         last_name: string
-    } = null;
+    } = {
+        first_name: "",
+        last_name: ""
+    };
 
     agency: {
         name: string,
         address: string,
         id: string,
         description: string
-    } = null;
+    } = {
+        name: "",
+        address: "",
+        id: "",
+        description: ""
+    };
 };
