@@ -9,7 +9,7 @@ users_router.route('/check_login')
 users_router.route('/login')
     .post((req: express.Request, res: express.Response) => users_controller.login(req, res, false));
 users_router.route('/login_admin')
-    .post((req: express.Request, res: express.Response) => users_controller.login(req, res, false));
+    .post((req: express.Request, res: express.Response) => users_controller.login(req, res, true));
 users_router.route('/register')
     .post((req: express.Request, res: express.Response) => users_controller.register(req, res));
 /*

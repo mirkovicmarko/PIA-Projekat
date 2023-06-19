@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AccountService } from '@shared/services/account.service';
 
@@ -15,14 +15,17 @@ export class LoginComponent implements OnInit {
   
   errors: string[] = [];
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void { }
 
   async login() {
     this.errors = [];
 
-    await this.accountService.login(this.username, this.password).then(
+    const current_url: string[] = this.router.url.split('/');
+    const admin: boolean = current_url[current_url.length - 1].localeCompare('login') != 0;
+
+    await this.accountService.login(this.username, this.password, admin).then(
       () => this.router.navigate(['radionice/prikazi_listu'], { queryParams: { tip: 'aktuelne' }}),
       (error) => this.errors = error.error
     );

@@ -29,8 +29,8 @@ export default function login_impl(req, res: Response, administrator: boolean) {
                 return;
             }
     
-            // Administrators have their own endpoint for login.
-            if (!administrator && user.type === USER_TYPES.admin) {
+            // Administrators have their own endpoint for login. Other user types cannot use that endpoint.
+            if (!administrator && user.type === USER_TYPES.admin || administrator && user.type !== USER_TYPES.admin) {
                 res.statusCode = 401;
                 res.send(['Pogrešni kredencijali.']);
                 return;

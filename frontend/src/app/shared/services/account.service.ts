@@ -40,9 +40,9 @@ export class AccountService {
     );
   }
 
-  async login(username: string, password: string) {
+  async login(username: string, password: string, admin: boolean) {
     let post = this.http.post(
-      this.endpoint_address + '/login',
+      this.endpoint_address + '/login' + (admin ? '_admin' : ''),
       { username: username, password: password },
       { withCredentials: true }
     );
