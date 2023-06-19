@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistrationComponent } from '@features/account/registration/registration.component';
-import { FormsModule } from '@angular/forms';
 
+import { RegistrationComponent } from '@features/account/registration/registration.component';
+import { HeaderComponent } from '@features/header/header.component';
+import { HeaderModule } from './header/header.module';
+import { RegistrationModule } from './account/registration/registration.module';
 
 
 @NgModule({
-  declarations: [
-    RegistrationComponent
-  ],
+  declarations: [],
   imports: [
-    CommonModule,
-    FormsModule
+    HeaderModule,
+    RegistrationModule,
+    CommonModule
   ],
   exports: [
-    RegistrationComponent
+    RegistrationComponent,
+    HeaderComponent
   ]
 })
 export class FeaturesModule { }

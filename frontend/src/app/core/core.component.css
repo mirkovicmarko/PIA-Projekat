@@ -21,10 +21,10 @@ footer {
 }
 
 app-loading {
-    position: relative;
     margin: auto;
 }
 
 p {
     text-align: center;
+    margin: auto;
 }
