@@ -1,0 +1,30 @@
+<form action="javascript:void(0);">
+    <table>
+        <tr>
+            <td>
+                <label for="username">Korisničko ime&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="username" id="username" [(ngModel)]="username" autocomplete="on" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="password">Lozinka&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="password" id="password" [(ngModel)]="password" />
+            </td>
+        </tr>
+        <tr style="border-top: 4px solid transparent">
+            <td colspan="2" style="text-align: right">
+                <a routerLink="/account/forgotten_password">Zaboravili ste lozinku?</a>
+            </td>
+        </tr>
+    </table>
+    
+    <p *ngFor="let error of errors" class="errors">{{ error }}</p>
+    
+    <button (click)="login()" type="submit">Prijavi se</button>
+</form>
+

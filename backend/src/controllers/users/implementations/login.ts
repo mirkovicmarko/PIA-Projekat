@@ -29,7 +29,7 @@ export default function login_impl(req, res: Response, administrator: boolean) {
                 return;
             }
     
-            // Administrator se prijavljuje preko posebnog zahteva.
+            // Administrators have their own endpoint for login.
             if (!administrator && user.type === USER_TYPES.admin) {
                 res.statusCode = 401;
                 res.send(['Pogrešni kredencijali.']);
