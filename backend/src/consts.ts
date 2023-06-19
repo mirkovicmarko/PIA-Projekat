@@ -1,3 +1,5 @@
+export const ORIGIN_URL: string = 'http://localhost:4200';
+
 export const SESSION_DATA = {
     user_id: 'user_id',
     user_type: 'user_type'

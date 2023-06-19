@@ -3,12 +3,14 @@ import bodyPaser from 'body-parser';
 import express from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
+
 import users_router from '@routes/users.routes';
+import { ORIGIN_URL } from '@consts';
 
 const app = express();
 
 app.use(bodyPaser.json({ limit: '10mb' }));
-app.use(cors({ credentials: true, origin: 'http://localhost:4200' }));
+app.use(cors({ credentials: true, origin: ORIGIN_URL }));
 
 app.use(session({
   secret: 'strongsecret',

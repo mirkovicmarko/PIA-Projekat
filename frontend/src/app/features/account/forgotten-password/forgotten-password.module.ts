@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
-import { RegistrationComponent } from './registration.component';
+import { ForgottenPasswordComponent } from './forgotten-password.component';
 
 
 @NgModule({
   declarations: [
-    RegistrationComponent
+    ForgottenPasswordComponent
   ],
   imports: [
     CommonModule,
     FormsModule
   ]
 })
-export class RegistrationModule { }
+export class ForgottenPasswordModule { }

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RegistrationComponent } from './account/registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 import { HeaderModule } from './header/header.module';
-import { RegistrationModule } from './account/registration/registration.module';
-import { LoginModule } from './account/login/login.module';
+import { AccountModule } from './account/account.module';
 
 
 @NgModule({
@@ -13,11 +11,9 @@ import { LoginModule } from './account/login/login.module';
   imports: [
     HeaderModule,
     CommonModule,
-    RegistrationModule,
-    LoginModule
+    AccountModule
   ],
   exports: [
-    RegistrationComponent,
     HeaderComponent
   ]
 })

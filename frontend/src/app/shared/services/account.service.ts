@@ -25,7 +25,7 @@ export class AccountService {
   }
 
   async check_login() {
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/check_login',
       {},
       { withCredentials: true }
@@ -41,7 +41,7 @@ export class AccountService {
   }
 
   async login(username: string, password: string, admin: boolean) {
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/login' + (admin ? '_admin' : ''),
       { username: username, password: password },
       { withCredentials: true }
@@ -54,25 +54,24 @@ export class AccountService {
   }
 
   async register(user: User) {
-    let post_body = {
+    const post_body = {
       user: user
     };
 
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/register',
       post_body
     );
 
-    // TODO check
     await firstValueFrom(post);
   }
 
   async change_info(user: User) {
-    let post_body = {
+    const post_body = {
       user: user
     };
 
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/change_info',
       post_body,
       { withCredentials: true }
@@ -82,7 +81,7 @@ export class AccountService {
   }
 
   async get_info() {
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/get_info',
       { },
       { withCredentials: true }
@@ -94,7 +93,7 @@ export class AccountService {
   }
 
   async forgotten_password(email) {
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/forgotten_password',
       { email: email }
     );
@@ -102,9 +101,9 @@ export class AccountService {
     await firstValueFrom(post);
   }
 
-  async change_user_password(old_password: string, new_password: string) {
-    let post = this.http.post(
-      this.endpoint_address + '/change_user_password',
+  async change_password(old_password: string, new_password: string) {
+    const post = this.http.post(
+      this.endpoint_address + '/change_password',
       { old_password: old_password, new_password: new_password },
       { withCredentials: true }
     );
@@ -113,8 +112,8 @@ export class AccountService {
   }
 
   async change_forgotten_password(verification_code: string, new_password: string) {
-    let post = this.http.post(
-      this.endpoint_address + '/change_password',
+    const post = this.http.post(
+      this.endpoint_address + '/change_forgotten_password',
       { verification_code: verification_code, new_password: new_password },
       { withCredentials: true }
     );
@@ -123,7 +122,7 @@ export class AccountService {
   }
 
   async logout() {
-    let post = this.http.post(
+    const post = this.http.post(
       this.endpoint_address + '/logout',
       { },
       { withCredentials: true }

@@ -28,6 +28,7 @@
     "image-size": "^1.0.2",
     "mongodb": "^4.5.0",
     "mongoose": "^7.3.0",
+    "nodemailer": "^6.9.3",
     "tsc-alias": "^1.8.6",
     "typescript": "^5.1.3"
   }

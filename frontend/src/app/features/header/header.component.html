@@ -3,7 +3,7 @@
         <div class="header-menu-item" *ngIf="user_type != USER_TYPES.none">
             <div class="header-menu-item-title">Profil</div>
             <div class="header-menu-item-submenu">
-                <a routerLink="account/info">Lični podaci</a>
+                <a routerLink="/account/info">Lični podaci</a>
             </div>
         </div>
 
@@ -23,8 +23,8 @@
         -->
     </div>
     <div id="header-right-side">
-        <a *ngIf="user_type == USER_TYPES.none" routerLink="account/login">Prijavi se</a>
-        <a *ngIf="user_type == USER_TYPES.none" routerLink="account/register">Registruj se</a>
+        <a *ngIf="user_type == USER_TYPES.none" routerLink="/account/login">Prijavi se</a>
+        <a *ngIf="user_type == USER_TYPES.none" routerLink="/account/register">Registruj se</a>
 
         <a *ngIf="user_type != USER_TYPES.none" (click)="logout()" routerLink="">Odjavi se</a>
     </div>

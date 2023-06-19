@@ -12,19 +12,19 @@ users_router.route('/login_admin')
     .post((req: express.Request, res: express.Response) => users_controller.login(req, res, true));
 users_router.route('/register')
     .post((req: express.Request, res: express.Response) => users_controller.register(req, res));
+users_router.route('/forgotten_password')
+    .post((req: express.Request, res: express.Response) => users_controller.forgotten_password(req, res));
+users_router.route('/change_forgotten_password')
+    .post((req: express.Request, res: express.Response) => users_controller.change_forgotten_password(req, res));
+users_router.route('/change_password')
+    .post((req: express.Request, res: express.Response) => users_controller.change_password(req, res));
+users_router.route('/logout')
+    .post((req: express.Request, res: express.Response) => users_controller.logout(req, res));
 /*
 users_router.route('/change_info')
     .post((req: express.Request, res: express.Response) => users_controller.change_info(req, res));
 users_router.route('/get_info')
     .post((req: express.Request, res: express.Response) => users_controller.get_info(req, res));
-users_router.route('/forgotten_password')
-    .post((req: express.Request, res: express.Response) => users_controller.forgotten_password(req, res));
-users_router.route('/change_user_password')
-    .post((req: express.Request, res: express.Response) => users_controller.change_user_password(req, res));
-users_router.route('/change_forgotten_password')
-    .post((req: express.Request, res: express.Response) => users_controller.change_forgotten_password(req, res));
-users_router.route('/logout')
-    .post((req: express.Request, res: express.Response) => users_controller.logout(req, res));
 */
 
 export default users_router;
