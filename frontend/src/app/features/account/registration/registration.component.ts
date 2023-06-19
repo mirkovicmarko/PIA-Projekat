@@ -46,6 +46,13 @@ export class RegistrationComponent {
       return;
     }
 
+    // Don't send data that has to do anything with other user types.
+    for(let type of Object.keys(USER_TYPES)) {
+      if(type != this.user.type) {
+        this.user[type] = undefined;
+      }
+    }
+
     await this.accountService.register(this.user).then(
       () => this.messages.push('Zahtev za registracijom je uspešno poslat.'),
       (error: HttpErrorResponse) => this.errors = error.error

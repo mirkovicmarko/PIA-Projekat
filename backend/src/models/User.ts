@@ -2,7 +2,10 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const UserModel = new mongoose.Schema({
-    _id: ObjectId,
+    _id: {
+        type: ObjectId,
+        auto: true
+    },
     username: {
         type: String,
         required: true
@@ -37,6 +40,7 @@ const UserModel = new mongoose.Schema({
     },
 
     client: {
+        _id: false,
         type: {
             first_name: {
                 type: String,
@@ -47,10 +51,12 @@ const UserModel = new mongoose.Schema({
                 required: true
             }
         },
-        default: null
+        default: null,
+        required: false
     },
 
     agency: {
+        _id: false,
         type: {
             name: {
                 type: String,
@@ -69,18 +75,24 @@ const UserModel = new mongoose.Schema({
                 required: true
             }
         },
-        default: null
+        default: null,
+        required: false
     },
 
     verification: {
-        code: {
-            type: String,
-            default: null
+        _id: false,
+        type: {
+            code: {
+                type: String,
+                default: null
+            },
+            time: {
+                type: String,
+                default: null
+            }
         },
-        time: {
-            type: String,
-            default: null
-        }
+        default: null,
+        required: false
     }
 });
 

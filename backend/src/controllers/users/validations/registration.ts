@@ -9,7 +9,7 @@ export default function registration(data: User) {
     let errors: string[] = [];
 
     if (!validation.password(data.password)) {
-        errors.push('Lozinka mora biti dužine od 8 do 16 i da sadrži minimum: 1 malo slovo, 1 veliko slovo, 1 specijalni karakter i 1 broj.');
+        errors.push('Lozinka mora biti dužine od 7 do 12 i da sadrži minimum: 1 malo slovo, 1 veliko slovo, 1 specijalni karakter i 1 broj.');
     }
 
     if (!validation.email(data.email)) {
