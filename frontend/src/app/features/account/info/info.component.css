@@ -1,0 +1,34 @@
+table {
+    border-collapse: collapse;
+    margin: 0 auto 8px auto;
+}
+
+#button_change_info_or_mode{
+    display: block;
+    margin: 8px auto 0 auto;
+}
+
+.errors, .messages {
+    margin: 0;
+    text-align: center;
+}
+
+.errors {
+    color: red;
+}
+
+.messages {
+    color: green;
+}
+
+#profile_picture_change,
+#profile_picture {
+    max-width: var(--form-input-width);
+
+    display: block;
+    margin: 0 auto;
+}
+
+input[type="text"]:read-only {
+    background-color: darkgray;
+}

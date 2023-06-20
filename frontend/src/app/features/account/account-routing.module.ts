@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ForgottenPasswordComponent } from './forgotten-password/forgotten-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { InfoComponent } from './info/info.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'change_password',
         component: ChangePasswordComponent
+      },
+      {
+        path: 'info',
+        component: InfoComponent
       }
     ]
   }

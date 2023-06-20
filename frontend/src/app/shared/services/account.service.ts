@@ -80,16 +80,14 @@ export class AccountService {
     await firstValueFrom(post);
   }
 
-  async get_info() {
+  get_info() {
     const post = this.http.post(
       this.endpoint_address + '/get_info',
       { },
       { withCredentials: true }
     );
 
-    firstValueFrom(post).then(
-      (response) => response
-    );
+    return firstValueFrom(post);
   }
 
   async forgotten_password(email) {

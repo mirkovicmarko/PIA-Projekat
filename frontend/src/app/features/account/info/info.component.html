@@ -1,0 +1,124 @@
+<ng-container *ngIf="info_loaded">
+    <table>
+        <tr>
+            <td>
+                <label for="user_type">Tip korisnika{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" readonly name="user_type" id="user_type"
+                    [value]="user.type == USER_TYPES.client ? 'Klijent' : (user.type == USER_TYPES.agency ? 'Agencija' : '???')" />
+            </td>
+        </tr>
+        <tr style="border-top: 8px solid transparent">
+            <td>
+                <label for="username">Korisničko ime{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="username" id="username" [(ngModel)]="user.username" [readonly]="!edit_mode" />
+            </td>
+        </tr>
+    
+        <tr style="border-top: 8px solid transparent">
+            <td>
+                <label for="phone_number">Kontakt telefon{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="phone_number" id="phone_number" [(ngModel)]="user.phone_number" [readonly]="!edit_mode" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">I-mejl{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" name="email" id="email" [(ngModel)]="user.email" [readonly]="!edit_mode" />
+            </td>
+        </tr>
+    
+        <tr style="border-top: 8px solid transparent">
+            <td>
+                <label for="profile_picture_change">Profilna slika{{ edit_mode ? '' : ':' }}&nbsp;</label>
+            </td>
+            <td>
+                <img id="profile_picture" [src]="user.profile_picture" alt="profilna slika" />
+                <input  *ngIf="edit_mode" type="file" accept=".png, .jpg, .jpeg" name="profile_picture_change" id="profile_picture_change"
+                    (change)="change_profile_picture($event)" />
+            </td>
+        </tr>
+    
+        <ng-container *ngIf="user.type == USER_TYPES.client">
+            <tr style="border: 8px solid transparent">
+                <td colspan="2" style="text-align: center">
+                    Informacije o klijentu
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="first_name">Ime{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="first_name" id="first_name" [(ngModel)]="user.client.first_name" [readonly]="!edit_mode" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="last_name">Prezime{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="last_name" id="last_name" [(ngModel)]="user.client.last_name" [readonly]="!edit_mode" />
+                </td>
+            </tr>
+        </ng-container>
+    
+        <ng-container *ngIf="user.type == USER_TYPES.agency">
+            <tr style="border: 8px solid transparent">
+                <td colspan="2" style="text-align: center">
+                    Informacije o agenciji
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="name">Naziv{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="name" id="name" [(ngModel)]="user.agency.name" [readonly]="!edit_mode" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="address">Adresa{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="address" id="address" [(ngModel)]="user.agency.address" [readonly]="!edit_mode" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id">Matični broj{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="id" id="id" [(ngModel)]="user.agency.id" [readonly]="!edit_mode" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="description">Opis{{ edit_mode ? '*' : ':' }}&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="description" id="description" [(ngModel)]="user.agency.description" [readonly]="!edit_mode" />
+                </td>
+            </tr>
+        </ng-container>
+    
+        <tr style="border: 4px solid transparent">
+            <td colspan="2" style="text-align: center"><a routerLink="/account/change_password">Promeni lozinku</a></td>
+        </tr>
+    </table>
+</ng-container>
+
+<p class="errors" *ngFor="let error of errors">{{ error }}</p>
+
+<p class="messages" *ngFor="let message of messages">{{ message }}</p>
+
+<button id="button_change_info_or_mode" (click)="change_info_or_mode()">{{ edit_mode ? 'Potvrdi' :
+    'Izmeni' }}</button>

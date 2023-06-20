@@ -52,6 +52,6 @@ hr {
     background-color: var(--black-olive);
 }
 
-.header-menu-item:hover .header-menu-item-title {
+.header-menu-item:hover .header-menu-item-submenu {
     display: flex;
 }
