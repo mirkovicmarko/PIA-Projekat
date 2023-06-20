@@ -4,8 +4,10 @@ import { InferSchemaType } from "mongoose";
 import UserModel from '@models/User';
 import registration_validation from '@controllers/users/validations/registration';
 import { USER_TYPES } from '@consts';
+import default_profile_picture_base64 from '@assets/default_profile_picture_base64';
 
 type User = InferSchemaType<typeof UserModel.schema>;
+
 
 export default function register(req: Request, res: Response) {
     const user = req.body['user'];
@@ -45,6 +47,10 @@ export default function register(req: Request, res: Response) {
 
     new_user.banned = false;
     new_user.approved = false;
+
+    if(!new_user.profile_picture) {
+        new_user.profile_picture = default_profile_picture_base64;
+    }
     
     UserModel.find({
         $or: [

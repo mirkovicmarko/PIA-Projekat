@@ -22,6 +22,9 @@
             "@routes/*": [
                 "src/routes/*"
             ],
+            "@assets/*": [
+                "src/assets/*"
+            ],
             "*": [
                 "node_modules/*",
                 "src/types/*"
