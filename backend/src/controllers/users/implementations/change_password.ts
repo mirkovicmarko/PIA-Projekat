@@ -4,7 +4,7 @@ import UserModel from '@models/User';
 import * as validation from "../validations/utils";
 import { SESSION_DATA } from "@consts";
 
-export default function promeni_lozinku_implementacija(req, res: Response) {
+export default function change_password(req, res: Response) {
     let user_id = req.session[SESSION_DATA.user_id];
     let old_password = req.body['old_password'];
     let new_password = req.body['new_password'];

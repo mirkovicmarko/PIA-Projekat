@@ -6,7 +6,7 @@ import { SESSION_DATA, USER_TYPES } from "@consts";
 
 type User = InferSchemaType<typeof UserModel.schema>;
 
-export default function login_impl(req, res: Response, administrator: boolean) {
+export default function login(req, res: Response, administrator: boolean) {
     let username = req.body['username'];
     let password = req.body['password'];
 

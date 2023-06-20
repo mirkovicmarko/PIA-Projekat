@@ -22,9 +22,7 @@ users_router.route('/logout')
     .post((req: express.Request, res: express.Response) => users_controller.logout(req, res));
 users_router.route('/get_info')
     .post((req: express.Request, res: express.Response) => users_controller.get_info(req, res));
-/*
 users_router.route('/change_info')
     .post((req: express.Request, res: express.Response) => users_controller.change_info(req, res));
-*/
 
 export default users_router;
