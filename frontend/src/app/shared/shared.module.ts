@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './ui/loading/loading.component';
+import { StarComponent } from './ui/star/star.component';
 
 
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    StarComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    LoadingComponent
+    LoadingComponent,
+    StarComponent
   ]
 })
 export class SharedModule { }

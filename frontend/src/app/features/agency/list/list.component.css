@@ -9,8 +9,8 @@
     width: 100%;
 }
 
-#filters-left-side,
-#filteri-right-side {
+#filters-left-alignment,
+#filters-right-alignment {
     display: flex;
     gap: 5px;
     align-items: center;

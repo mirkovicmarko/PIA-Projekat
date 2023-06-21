@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 
 import UserModel from '@models/User';
 import { SESSION_DATA, USER_TYPES } from "@consts";
+import default_profile_picture_base64 from "@assets/default_profile_picture_base64";
+
 
 export default function get(req, res: Response) {
     const agency_id = req.query['id'];
@@ -58,11 +60,16 @@ export default function get(req, res: Response) {
 
                 if(user_id === undefined) {
                     for(let comment of agency['comments']) {
-                        comment['author_info'] = undefined;
+                        comment['author_info'] = {
+                            profile_picture: default_profile_picture_base64,
+                            first_name: '',
+                            last_name: '',
+                            username: ''
+                        };
                     }
                 } 
                 
-                res.send(agencies[0]);
+                res.send(agency);
             }
             else {
                 res.statusCode = 400;

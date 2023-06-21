@@ -12,7 +12,9 @@ class AgencyInfo {
     description: string = "";
     comments: {
         author: number,
-        text: string
+        text: string,
+        title: string,
+        rating: number
     }[] = [];
 };
 

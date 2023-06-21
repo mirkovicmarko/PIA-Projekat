@@ -1,4 +1,63 @@
-#agency-name,
-#agency-address {
-    text-align: center;
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+#agency-info {
+    width: fit-content;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+#agency-description {
+    word-break: break-word;
+}
+
+.agency-comment {
+    display: flex;
+    gap: 1em;
+}
+
+.agency-comment-left-alignment,
+.agency-comment-right-alignment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.agency-comment-left-alignment {
+    justify-content: center;
+    align-items: center;
+}
+
+.agency-comment-profile-picture {
+    height: 4.5em;
+    width: auto;
+}
+
+.agency-comment-author {
+    margin: 0;
+    font-weight: bold;
+}
+
+.agency-comment-header {
+    display: flex;
+    gap: 0.5em;
+
+    font-size: 20px;
+}
+
+.agency-comment-title {
+    font-weight: bold;
+}
+
+.agency-comment-star {
+    width: 1em;
+    height: auto;
+    fill: gold;
 }
