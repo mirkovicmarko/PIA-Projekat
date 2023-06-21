@@ -22,11 +22,13 @@ hr {
 .header-menu-item {
     position: relative;
     z-index: 1;
-    padding: var(--button-padding);
 
     cursor: default;
     border: 2px solid var(--middle-blue-green);
-    
+}
+
+.header-menu-item-title {
+    padding: var(--button-padding);
 }
 
 .header-menu-item-submenu {
@@ -46,9 +48,6 @@ hr {
 
 .header-menu-item:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.header-menu-item:hover .header-menu-item-title {
     background-color: var(--black-olive);
 }
 

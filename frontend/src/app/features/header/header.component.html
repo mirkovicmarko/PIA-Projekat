@@ -1,5 +1,5 @@
 <header>
-    <div id="header-left-side menu">
+    <div id="header-left-side">
         <div class="header-menu-item" *ngIf="user_type != USER_TYPES.none">
             <div class="header-menu-item-title">Profil</div>
             <div class="header-menu-item-submenu">
@@ -7,20 +7,12 @@
             </div>
         </div>
 
-        <!--
         <div class="header-menu-item">
-            <div class="header-menu-item-title">Radionice</div>
+            <div class="header-menu-item-title">Agencije</div>
             <div class="header-menu-item-submenu">
-                <a routerLink="objects/show_all">Sve</a>
-                <ng-container *ngIf="user_type == USER_TYPES.none">
-                    <hr>
-                    
-                    <a routerLink="radionice/prikazi_listu" [queryParams]="{tip: 'moje'}">Moje</a>
-                    
-                </ng-container>
+                <a routerLink="/agencies/list">Sve</a>
             </div>
         </div>
-        -->
     </div>
     <div id="header-right-side">
         <a *ngIf="user_type == USER_TYPES.none" routerLink="/account/login">Prijavi se</a>

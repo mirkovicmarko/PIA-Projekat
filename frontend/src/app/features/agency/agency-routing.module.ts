@@ -10,7 +10,7 @@ const routes: Routes = [
       path: 'agencies',
       children: [
         {
-          path: 'get_all',
+          path: 'list',
           component: ListComponent
         },
         {
