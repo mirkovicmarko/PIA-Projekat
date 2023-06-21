@@ -48,7 +48,7 @@ export class RegistrationComponent {
 
     // Don't send data that has to do anything with other user types.
     for(let type of Object.keys(USER_TYPES)) {
-      if(type != this.user.type) {
+      if(type.localeCompare(this.user.type) != 0) {
         this.user[type] = undefined;
       }
     }

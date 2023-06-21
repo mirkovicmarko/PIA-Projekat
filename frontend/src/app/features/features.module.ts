@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { HeaderModule } from './header/header.module';
 import { AccountModule } from './account/account.module';
+import { AgencyModule } from './agency/agency.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AccountModule } from './account/account.module';
   imports: [
     HeaderModule,
     CommonModule,
-    AccountModule
+    AccountModule,
+    AgencyModule
   ],
   exports: [
     HeaderComponent

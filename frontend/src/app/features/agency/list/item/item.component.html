@@ -1,0 +1,13 @@
+<div class="agency-left-side">
+    <div class="agency-text">
+        <h3 class="agency-name">{{ agency['name'] }}</h3>
+        <p class="agency-address">{{ agency['address'] }}</p>
+        <p class="agency-description">
+            {{ agency['description'] }}
+        </p>
+    </div>
+    <div>
+        <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
+    </div>
+</div>
+<img class="agency-profile-picture" [src]="agency['profile_picture']" />

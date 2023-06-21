@@ -73,6 +73,19 @@ const UserModel = new mongoose.Schema({
             description: {
                 type: String,
                 required: true
+            },
+            comments: {
+                type: Array<{
+                    author: {
+                        type: String,
+                        required: true
+                    },
+                    text: {
+                        type: String,
+                        required: true
+                    }
+                }>,
+                default: []
             }
         },
         default: null,

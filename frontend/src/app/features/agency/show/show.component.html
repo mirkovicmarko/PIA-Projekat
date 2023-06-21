@@ -1,0 +1,28 @@
+<ng-container *ngIf="agency_loaded">
+    <h3 id="agency-name">{{ agency['name'] }}</h3>
+    <p id="agency-address">{{ agency['address'] }}</p>
+
+    <div id="agency-details">
+        <img [src]="agency['profile_picture']" alt="slika agencije" />
+        <p id="agency-description">{{ agency['description'] }}</p>
+    </div>
+
+    <div id="agency-comments">
+        <div class="agency-comment" *ngFor="let comment of agency['comments']">
+            <div class="agency-comment-left-side">
+                <p>
+                    {{ comment['author_info']['first_name'] }}
+                    {{ comment['author_info']['last_name'] }}
+                </p>
+                <img [src]="comment['author_info']['profile_picture']" alt="slika korisnika">
+            </div>
+            <div class="agency-comment-right-side">
+                {{ comment['text'] }}
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="errors.length > 0">
+        <p *ngFor="let error of errors">{{ error }}</p>
+    </div>
+</ng-container>

@@ -1,0 +1,60 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+
+    border-left: 5px solid var(--middle-blue-green);
+    padding: 0 10px;
+}
+
+.agency-left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+
+    align-self: stretch;
+
+    max-height: inherit;
+}
+
+.agency-text {
+    flex-grow: 1;
+
+    overflow: auto;
+}
+
+.agency-name {
+    margin-top: 0;
+}
+
+.agency-profile-picture {
+    max-height: inherit;
+    height: auto;
+    max-width: 50%;
+    min-height: 0;
+
+    align-self: center;
+}
+
+@media screen and (max-width: 600px) {
+    :host {
+        flex-direction: column;
+    }
+
+    .agency-left-side {
+        min-height: 160px;
+    }
+
+    .agency-text {
+        width: 100%;
+    }
+
+    .agency-profile-picture {
+        max-width: 100%;
+        width: auto;
+        min-height: 100px;
+    }
+}

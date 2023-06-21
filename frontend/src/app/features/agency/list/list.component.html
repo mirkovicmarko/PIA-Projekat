@@ -1,0 +1,19 @@
+<div id="filters">
+    <div id="filters-left-alignment">
+        <input type="text" placeholder="Naziv" [(ngModel)]="name_filter" (input)="update()" />
+        <input type="text" placeholder="Adresa" [(ngModel)]="address_filter" (input)="update()" />
+    </div>
+    <div id="filters-right-alignment">
+        <span>Sortiraj po:</span>
+        <button (click)="sort_by('name')">Nazivu</button>
+        <button (click)="sort_by('address')">Mestu</button>
+    </div>
+</div>
+
+<div id="agencies">
+    <app-item *ngFor="let agency of filtered_agencies" [agency]="agency"></app-item>
+</div>
+
+<div *ngIf="errors.length > 0">
+    <p *ngFor="let error of errors">{{ error }}</p>
+</div>

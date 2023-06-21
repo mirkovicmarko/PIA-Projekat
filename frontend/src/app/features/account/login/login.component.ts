@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     const admin: boolean = current_url[current_url.length - 1].localeCompare('login') != 0;
 
     await this.accountService.login(this.username, this.password, admin).then(
-      () => /*this.router.navigate(['radionice/prikazi_listu'], { queryParams: { tip: 'aktuelne' }})*/ 1,
+      () => this.router.navigate(['agency/list']),
       (error) => this.errors = error.error
     );
   }
