@@ -1,3 +1,4 @@
+import { USER_TYPES } from "@consts";
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
@@ -32,7 +33,8 @@ const UserModel = new mongoose.Schema({
     },
     type: {
         type: String,
-        required: true
+        required: true,
+        enum: Object.keys(USER_TYPES)
     },
     profile_picture: {
         type: String,

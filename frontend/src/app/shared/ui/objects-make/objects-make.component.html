@@ -1,0 +1,18 @@
+<canvas id="canvas-objects" #canvasObjects></canvas>
+
+<div id="objects-panel">
+    <div class="object-panel" *ngFor="let room of rooms">
+        <input type="number" min="1" class="objects-panel-width" [value]="room.position.width" readonly />
+        <input type="number" min="1" class="objects-panel-height" [value]="room.position.height" readonly />
+        <button class="objects-panel-edit-button" *ngIf="current_room === null && current_door === null" (click)="edit_room(room)">Izmeni</button>
+        <button class="objects-panel-delete-button" *ngIf="current_room === null && current_door === null" (click)="delete_room(room)">Izbriši</button>
+    </div>
+    <div id="current-object-panel" *ngIf="current_room !== null">
+        <hr />
+        <input type="number" min="1" class="objects-panel-width" [(ngModel)]="current_room.position.width" />
+        <input type="number" min="1" class="objects-panel-height" [(ngModel)]="current_room.position.height" />
+        <hr />
+    </div>
+    <button id="button-add-object" *ngIf="rooms.length < max_num_of_rooms && (current_room === null && current_door === null)" (click)="new_room()">Dodaj sobu</button>
+    <button id="button-add-door" *ngIf="current_room === null && current_door === null && rooms.length > 0" (click)="new_door()">Dodaj vrata</button>
+</div>

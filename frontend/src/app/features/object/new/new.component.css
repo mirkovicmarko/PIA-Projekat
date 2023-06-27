@@ -1,0 +1,27 @@
+table {
+    border-collapse: collapse;
+    margin: 0 auto 8px auto;
+}
+
+app-objects-make {
+    margin: 0 auto 8px auto;
+}
+
+#buttons-object {
+    display: block;
+    width: fit-content;
+    margin: 8px auto 0 auto;
+}
+
+.errors, .messages {
+    margin: 0;
+    text-align: center;
+}
+
+.errors {
+    color: red;
+}
+
+.messages {
+    color: green;
+}

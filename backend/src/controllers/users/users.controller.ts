@@ -8,7 +8,7 @@ import get_info_impl from "@controllers/users/implementations/get_info";
 import change_info_impl from "@controllers/users/implementations/change_info";
 import logout_impl from "@controllers/users/implementations/logout";
 
-export class UsersController {
+export default class UsersController {
     check_login = check_login_impl;
     login = login_impl;
     register = register_impl;

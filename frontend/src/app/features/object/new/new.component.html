@@ -1,0 +1,49 @@
+<table *ngIf="current_step == 0">
+    <tr>
+        <td colspan="2" style="text-align: center">
+            <span>Tip objekta: </span>
+            <button (click)="change_object_type()">
+                {{ object.type == OBJECT_TYPES.flat ? 'Stan' : (object.type == OBJECT_TYPES.house ? 'Kuća' : '???') }}
+            </button>
+        </td>
+    </tr>
+
+    <tr style="border-top: 8px solid transparent">
+        <td>
+            <label for="address">Adresa*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="address" id="address" [(ngModel)]="object.address" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="rooms">Broj soba*&nbsp;</label>
+        </td>
+        <td>
+            <input type="number" [min]="MIN_ROOMS" [max]="MAX_ROOMS" name="rooms" id="rooms" [(ngModel)]="number_of_rooms" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="quadrature">Kvadratura*&nbsp;</label>
+        </td>
+        <td>
+            <input type="number" min="1" name="quadrature" id="quadrature" [(ngModel)]="object.quadrature" />
+        </td>
+    </tr>
+</table>
+
+<app-objects-make #canvasObjects *ngIf="current_step == 1" [max_num_of_rooms]="number_of_rooms" [rooms]="object.rooms" [style]="{width: CANVAS_DIMENSIONS}"></app-objects-make>
+
+<ng-container *ngIf="current_step == 1">
+    <p class="errors" *ngFor="let error of errors">{{ error }}</p>
+
+    <p class="messages" *ngFor="let message of messages">{{ message }}</p>
+</ng-container>
+
+<div id="buttons-object">
+    <button *ngIf="current_step == 1" (click)="change_step(-1)">Nazad</button>
+    <button *ngIf="current_step == 1" (click)="make()">Napravi</button>
+    <button *ngIf="current_step == 0" (click)="change_step(+1)">Dalje</button>
+</div>

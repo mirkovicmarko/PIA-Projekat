@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import users_router from '@routes/users.routes';
 import { ORIGIN_URL } from '@consts';
 import agencies_router from '@routes/agencies.routes';
+import objects_router from '@routes/objects.routes';
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(session({
 const router = express.Router();
 router.use('/users', users_router);
 router.use('/agencies', agencies_router);
+router.use('/objects', objects_router);
 app.use("/", router);
 
 mongoose.connect('mongodb://127.0.0.1:27017/PIAProject');

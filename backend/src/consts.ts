@@ -11,3 +11,10 @@ export const USER_TYPES = {
     agency: 'agency',
     admin: 'admin'
 };
+
+export const OBJECT_TYPES = {
+    flat: 'flat',
+    house: 'house'
+}
+
+export const MIN_ROOMS = 1, MAX_ROOMS = 3;

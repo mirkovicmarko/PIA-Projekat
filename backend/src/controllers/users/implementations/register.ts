@@ -12,7 +12,7 @@ type User = InferSchemaType<typeof UserModel.schema>;
 export default function register(req: Request, res: Response) {
     const user = req.body['user'];
 
-    if(!user) {
+    if(user === undefined) {
         res.statusCode = 400;
         res.send();
         return;

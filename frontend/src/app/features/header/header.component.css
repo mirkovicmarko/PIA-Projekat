@@ -25,6 +25,8 @@ hr {
 
     cursor: default;
     border: 2px solid var(--middle-blue-green);
+
+    text-wrap: nowrap;
 }
 
 .header-menu-item-title {

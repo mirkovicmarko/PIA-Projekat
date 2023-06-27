@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { AgenciesController } from '@controllers/agencies/agencies.controller';
+import AgenciesController from '@controllers/agencies/agencies.controller';
 
 
 const agencies_router = express.Router();

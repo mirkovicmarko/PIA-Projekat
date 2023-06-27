@@ -43,6 +43,7 @@
 .agency-comment-author {
     margin: 0;
     font-weight: bold;
+    color: var(--middle-blue-green);
 }
 
 .agency-comment-header {
