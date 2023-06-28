@@ -4,6 +4,7 @@ import { LoadingComponent } from './ui/loading/loading.component';
 import { StarComponent } from './ui/star/star.component';
 import { FormsModule } from '@angular/forms';
 import { ObjectsMakeComponent } from './ui/objects-make/objects-make.component';
+import { ObjectsShowComponent } from './ui/objects-show/objects-show.component';
 
 
 
@@ -11,7 +12,8 @@ import { ObjectsMakeComponent } from './ui/objects-make/objects-make.component';
   declarations: [
     LoadingComponent,
     StarComponent,
-    ObjectsMakeComponent
+    ObjectsMakeComponent,
+    ObjectsShowComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { ObjectsMakeComponent } from './ui/objects-make/objects-make.component';
   exports: [
     LoadingComponent,
     StarComponent,
-    ObjectsMakeComponent
+    ObjectsMakeComponent,
+    ObjectsShowComponent
   ]
 })
 export class SharedModule { }

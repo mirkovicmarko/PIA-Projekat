@@ -9,4 +9,4 @@ export const OBJECT_TYPES = {
 
 export const MIN_ROOMS = 1, MAX_ROOMS = 3;
 
-export const CANVAS_DIMENSIONS = '600px';
+export const CANVAS_DIMENSIONS = 600;

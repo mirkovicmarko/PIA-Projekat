@@ -47,7 +47,8 @@ const ObjectModel = new mongoose.Schema({
         min: 1
     },
     owner: {
-        type: ObjectId
+        type: ObjectId,
+        required: true
     },
 });
 

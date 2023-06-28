@@ -2,17 +2,6 @@
     display: block;
 }
 
-#canvas-objects {
-    width: 100%;
-    aspect-ratio: 1;
-
-    margin: 0 auto 8px auto;
-    display: block;
-
-    box-sizing: border-box;
-    border: 1px solid var(--middle-blue-green);
-}
-
 #objects-panel {
     margin: 0 auto;
     width: fit-content;

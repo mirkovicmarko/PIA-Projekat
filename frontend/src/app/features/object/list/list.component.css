@@ -1,0 +1,14 @@
+:host {
+    flex-grow: 1;
+}
+
+app-item {
+    max-height: max(20vh, 200px);
+    margin: 15px 0;
+}
+
+@media screen and (max-width: 600px) {
+    app-item {
+        max-height: max(40vh, 500px);
+    }
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ObjectRoutingModule } from './object-routing.module';
 import { NewModule } from './new/new.module';
+import { ListModule } from './list/list.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { NewModule } from './new/new.module';
   imports: [
     CommonModule,
     ObjectRoutingModule,
-    NewModule
+    NewModule,
+    ListModule
   ]
 })
 export class ObjectModule { }

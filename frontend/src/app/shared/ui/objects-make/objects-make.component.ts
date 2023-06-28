@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ObjectRoom, ObjectRoomDoor } from '@shared/models/object';
+import { ObjectsShowComponent } from '../objects-show/objects-show.component';
 
 @Component({
   selector: 'app-objects-make',
@@ -13,10 +14,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
   public rooms: ObjectRoom[];
 
   @ViewChild('canvasObjects', {static: false})
-  private canvas_element: ElementRef<HTMLCanvasElement>;
-  private canvas: HTMLCanvasElement;
-  
-  private canvas_context: CanvasRenderingContext2D;
+  private objects_show: ObjectsShowComponent;
 
   protected current_room: ObjectRoom = null;
   protected current_door: ObjectRoomDoor = null;
@@ -29,19 +27,14 @@ export class ObjectsMakeComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit(): void {
-    this.canvas = this.canvas_element.nativeElement;
-
-    this.canvas_context = this.canvas.getContext('2d');
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
-
-    this.canvas.addEventListener('click', (event) => this.click_event(event));
-    this.canvas.addEventListener('mousemove', (event) => this.move_event(event));
+    this.objects_show.get_canvas().addEventListener('click', (event) => this.click_event(event));
+    this.objects_show.get_canvas().addEventListener('mousemove', (event) => this.move_event(event));
 
     if(this.rooms.length > this.max_num_of_rooms) {
       this.rooms.splice(this.max_num_of_rooms - 1, this.rooms.length - this.max_num_of_rooms);
     }
-    this.draw_rooms();
+
+    this.objects_show.draw_rooms();
   }
 
   protected new_room() {
@@ -67,42 +60,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
 
     this.rooms.splice(this.rooms.indexOf(room), 1);
 
-    this.clear_canvas();
-    this.draw_rooms();
-  }
-
-  private clear_canvas() {
-    this.canvas_context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
-
-  private draw_rooms() {
-    for(let room of this.rooms) {
-      this.draw_room(room);
-    }
-    if (this.current_room !== null) this.draw_room(this.current_room);
-
-    for(let room of this.rooms) {
-      this.draw_doors_of(room);
-    }
-    if (this.current_room !== null) this.draw_doors_of(this.current_room);
-  }
-
-  private draw_room(room: ObjectRoom, bold: boolean = true) {
-    this.canvas_context.lineWidth = bold ? 2 : 1;
-    this.canvas_context.strokeStyle = "white";
-
-    this.canvas_context.beginPath();
-    this.canvas_context.rect(room.position.x, room.position.y, room.position.width, room.position.height);
-    this.canvas_context.stroke();
-  }
-
-  private draw_doors_of(room: ObjectRoom) {
-    const door_width = 14, door_height = 24;
-    this.canvas_context.fillStyle = "peru";
-
-    for(let door of room.doors) {
-      this.canvas_context.fillRect(room.position.x + door.x - door_width / 2, room.position.y + door.y - door_height / 2, door_width, door_height);
-    }
+    this.objects_show.draw_rooms();
   }
 
   private click_event(event) {
@@ -120,14 +78,13 @@ export class ObjectsMakeComponent implements AfterViewInit {
       this.current_door = null;
     }
 
-    this.clear_canvas();
-    this.draw_rooms();
+    this.objects_show.draw_rooms();
   }
 
   private move_event(event) {
     if (this.current_room === null && this.current_door === null) return;
 
-    const bounding_rectange = this.canvas.getBoundingClientRect();
+    const bounding_rectange = this.objects_show.get_canvas().getBoundingClientRect();
 
     if (this.current_door !== null) {
       if (this.current_room_under_door !== null) {
@@ -174,8 +131,11 @@ export class ObjectsMakeComponent implements AfterViewInit {
       }
     }
     
-    this.clear_canvas();
-    this.draw_rooms();
+    this.objects_show.draw_rooms();
+    if(this.current_room !== null) {
+      this.objects_show.draw_room(this.current_room);
+      this.objects_show.draw_doors_of(this.current_room);
+    }
   }
 
   private rooms_colliding_with_current() {

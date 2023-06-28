@@ -1,10 +1,18 @@
 import { Request, Response } from 'express';
 
 import ObjectModel from '@models/Object';
+import { SESSION_DATA } from '@consts';
 
 
-export default function make(req: Request, res: Response) {
+export default function make(req, res: Response) {
     const object = req.body['object'];
+    const user_id = req.session[SESSION_DATA.user_id];
+
+    if(user_id === undefined) {
+        res.statusCode = 401;
+        res.send();
+        return;
+    }
 
     if(object === undefined) {
         res.statusCode = 400;
@@ -13,6 +21,8 @@ export default function make(req: Request, res: Response) {
     }
 
     const new_object = new ObjectModel(object);
+    
+    new_object.owner = user_id;
 
     const fields_validation = new_object.validateSync();
     if(fields_validation) {

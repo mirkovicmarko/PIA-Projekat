@@ -22,9 +22,19 @@ export class ObjectService {
 
     const post = this.http.post(
       this.endpoint_address + '/make',
-      post_body
+      post_body,
+      { withCredentials: true }
     );
 
     await firstValueFrom(post);
+  }
+
+  get_all() {
+    const get = this.http.get(
+      this.endpoint_address + '/get_all',
+      { withCredentials: true }
+    );
+
+    return firstValueFrom(get);
   }
 }
