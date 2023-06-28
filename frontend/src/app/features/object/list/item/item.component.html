@@ -7,6 +7,7 @@
     </div>
     <div>
         <button routerLink="/objects/change" [queryParams]="{ 'id': object._id }">Izmeni</button>
+        <button (click)="erase(object)">Izbriši</button>
     </div>
 </div>
 <app-objects-show class="object-picture" [rooms]="object.rooms"></app-objects-show>

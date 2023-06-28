@@ -43,6 +43,20 @@ export class ObjectService {
     await firstValueFrom(post);
   }
 
+  async erase(id: number) {
+    const post_body = {
+      id: id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/erase',
+      post_body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
   get_all() {
     const get = this.http.get(
       this.endpoint_address + '/get_all',

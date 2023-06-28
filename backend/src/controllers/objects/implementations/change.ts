@@ -33,7 +33,7 @@ export default function change(req, res: Response) {
 
     ObjectModel.findOneAndUpdate({ _id: update_object._id, owner: user_id }, update_object).then(
         (updated_object) => {
-            if(!update_object) {
+            if(!updated_object) {
                 res.statusCode = 400;
                 res.send(['Zadati objekat ne postoji.']);
                 return;
@@ -48,14 +48,4 @@ export default function change(req, res: Response) {
             res.send(['Greška na serveru.']);
         }
     )
-    
-    update_object.updateOne().then(
-        (_new_object) => res.send(),
-        (error) => {
-            console.log(error);
-
-            res.statusCode = 500;
-            res.send(['Greška na serveru.']);
-        }
-    );
 };
