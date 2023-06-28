@@ -34,7 +34,15 @@ export default function get(req, res: Response) {
             }
         },
         {
-            $unwind: "$agency.comments.author_info"
+            $unwind: {
+                path: "$agency.comments.author_info",
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $set: {
+                "agency.comments": { $cond: { if: { $eq: ["$agency.comments", {}] }, then: "$$REMOVE", else: "$agency.comments" } }
+            }
         },
         {
             $group: {

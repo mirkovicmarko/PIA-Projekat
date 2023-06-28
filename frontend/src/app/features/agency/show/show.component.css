@@ -18,6 +18,10 @@
     word-break: break-word;
 }
 
+#agency-comments {
+    padding: 0 16px;
+}
+
 .agency-comment {
     display: flex;
     gap: 1em;
