@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CANVAS_DIMENSIONS, MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from '@shared/consts';
 import Object, { ObjectRoom } from '@shared/models/object';
 import { ObjectService } from '@shared/services/object.service';
+import { UtilService } from '@shared/services/util.service';
 import { ObjectsMakeComponent } from '@shared/ui/objects-make/objects-make.component';
 
 
@@ -23,6 +24,8 @@ export class UpsertComponent implements OnInit {
 
   object: Object = new Object();
   number_of_rooms: number = MIN_ROOMS;
+
+  protected reveal_JSON_upload: boolean = false;
 
   errors: string[] = [];
   messages: string[] = [];
@@ -43,7 +46,7 @@ export class UpsertComponent implements OnInit {
     return CANVAS_DIMENSIONS;
   }
 
-  constructor(private objectService: ObjectService, private activeRoute: ActivatedRoute, private router: Router) { }
+  constructor(private objectService: ObjectService, private activeRoute: ActivatedRoute, private router: Router, private utilService: UtilService) { }
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.queryParams['id'];
@@ -92,5 +95,15 @@ export class UpsertComponent implements OnInit {
         (error: HttpErrorResponse) => this.errors = error.error
       );
     }
+  }
+
+  load_JSON(event) {
+    this.utilService.data_file_to_text(event.target.files[0]).then(
+      (text: string) => {
+        this.object = JSON.parse(text);
+        this.number_of_rooms = this.object.rooms.length;
+        this.reveal_JSON_upload = false;
+      }
+    );
   }
 }

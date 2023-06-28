@@ -21,5 +21,21 @@ export class UtilService {
 
       reader.readAsDataURL(image_file);
     });
+  }
+
+  data_file_to_text(file: File) {
+    const reader = new FileReader();
+
+    return new Promise((success, _failure) => {
+      reader.onerror = () => {
+        reader.abort();
+      };
+
+      reader.onload = () => {
+        success(reader.result);
+      };
+
+      reader.readAsText(file);
+    });
   };
 }

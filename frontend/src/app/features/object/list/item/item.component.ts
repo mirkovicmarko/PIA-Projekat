@@ -19,8 +19,8 @@ export class ItemComponent {
 
   constructor(private objectService: ObjectService) { }
 
-  erase(object: Object) {
-    this.objectService.erase(object._id).then(
+  erase() {
+    this.objectService.erase(this.object._id).then(
       () => {
         alert('Uspešno obrisan objekat.');
         window.location.reload();
@@ -29,6 +29,19 @@ export class ItemComponent {
         alert(error.error);
       }
     );
+  }
+
+  JSON_download() {
+    const data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.object));
+    const downloadAnchorNode = document.createElement('a');
+
+    downloadAnchorNode.style.display = "none";
+    downloadAnchorNode.setAttribute("href", data);
+    downloadAnchorNode.setAttribute("download", "object.json");
+    
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
   }
 
 }

@@ -1,13 +1,14 @@
 <div class="object-left-side">
     <div class="object-text">
-        <p class="object-type">Tip: {{ object.type == OBJECT_TYPES.flat ? "Stan" : (object.type == OBJECT_TYPES.house ? "Kuća" : "") }}</p>
-        <p class="object-address">Adresa: {{ object.address }}</p>
-        <p class="object-number-of-rooms">Broj soba: {{ object.rooms.length }}</p>
-        <p class="object-quadrature">Kvadratura: {{ object.quadrature }}</p>
+        <p class="object-type"><strong>Tip:</strong> {{ object.type == OBJECT_TYPES.flat ? "Stan" : (object.type == OBJECT_TYPES.house ? "Kuća" : "") }}</p>
+        <p class="object-address"><strong>Adresa:</strong> {{ object.address }}</p>
+        <p class="object-number-of-rooms"><strong>Broj soba:</strong> {{ object.rooms.length }}</p>
+        <p class="object-quadrature"><strong>Kvadratura:</strong> {{ object.quadrature }}</p>
     </div>
     <div>
         <button routerLink="/objects/change" [queryParams]="{ 'id': object._id }">Izmeni</button>
-        <button (click)="erase(object)">Izbriši</button>
+        <button (click)="erase()">Izbriši</button>
+        <button (click)="JSON_download()">JSON</button>
     </div>
 </div>
 <app-objects-show class="object-picture" [rooms]="object.rooms"></app-objects-show>

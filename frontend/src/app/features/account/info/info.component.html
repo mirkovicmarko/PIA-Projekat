@@ -37,11 +37,11 @@
     
         <tr style="border-top: 8px solid transparent">
             <td>
-                <label for="profile_picture_change">Profilna slika{{ edit_mode ? '' : ':' }}&nbsp;</label>
+                <label>Profilna slika{{ edit_mode ? '' : ':' }}&nbsp;</label>
             </td>
             <td>
                 <img id="profile_picture" [src]="user.profile_picture" alt="profilna slika" />
-                <input  *ngIf="edit_mode" type="file" accept=".png, .jpg, .jpeg" name="profile_picture_change" id="profile_picture_change"
+                <input *ngIf="edit_mode" type="file" accept=".png, .jpg, .jpeg" name="profile_picture_change" id="profile_picture_change"
                     (change)="change_profile_picture($event)" />
             </td>
         </tr>

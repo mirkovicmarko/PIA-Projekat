@@ -35,7 +35,6 @@
     }
 
     .object-picture {
-        max-width: 100%;
         width: auto;
         min-height: 100px;
     }

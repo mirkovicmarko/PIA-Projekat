@@ -32,6 +32,14 @@
             <input type="number" min="1" name="quadrature" id="quadrature" [(ngModel)]="object.quadrature" />
         </td>
     </tr>
+    <tr *ngIf="reveal_JSON_upload">
+        <td>
+            <label for="JSON">JSON&nbsp;</label>
+        </td>
+        <td>
+            <input *ngIf="current_step == 0" name="JSON" id="JSON" type="file" accept=".json" (change)="load_JSON($event)" />
+        </td>
+    </tr>
 </table>
 
 <app-objects-make #canvasObjects *ngIf="current_step == 1" [max_num_of_rooms]="number_of_rooms" [rooms]="object.rooms" [style]="{width: CANVAS_DIMENSIONS}"></app-objects-make>
@@ -43,7 +51,9 @@
 </ng-container>
 
 <div id="buttons-object">
+    <button *ngIf="current_step == 0" (click)="change_step(+1)">Dalje</button>
+    <button *ngIf="current_step == 0 && !reveal_JSON_upload" (click)="reveal_JSON_upload = true">Učitaj iz JSON-a</button>
+
     <button *ngIf="current_step == 1" (click)="change_step(-1)">Nazad</button>
     <button *ngIf="current_step == 1" (click)="upsert()">Potvrdi</button>
-    <button *ngIf="current_step == 0" (click)="change_step(+1)">Dalje</button>
 </div>
