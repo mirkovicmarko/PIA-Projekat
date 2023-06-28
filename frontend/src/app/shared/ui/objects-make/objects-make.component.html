@@ -9,8 +9,8 @@
     </div>
     <div id="current-object-panel" *ngIf="current_room !== null">
         <hr />
-        <input type="number" min="1" class="objects-panel-width" [(ngModel)]="current_room.position.width" />
-        <input type="number" min="1" class="objects-panel-height" [(ngModel)]="current_room.position.height" />
+        <input type="number" min="1" class="objects-panel-width" [(ngModel)]="current_room.position.width" (ngModelChange)="fix_doors(current_room)" />
+        <input type="number" min="1" class="objects-panel-height" [(ngModel)]="current_room.position.height" (ngModelChange)="fix_doors(current_room)" />
         <hr />
     </div>
     <button id="button-add-object" *ngIf="rooms.length < max_num_of_rooms && (current_room === null && current_door === null)" (click)="new_room()">Dodaj sobu</button>

@@ -157,4 +157,21 @@ export class ObjectsMakeComponent implements AfterViewInit {
     }
     return null;
   }
+
+  protected fix_doors(room: ObjectRoom) {
+    const valid_doors: ObjectRoomDoor[] = [];
+
+    for (let door of room.doors) {
+      if (
+        door.x == 0 && door.y >= 0 && door.y <= room.position.height ||
+        door.x == room.position.width && door.y >= 0 && door.y <= room.position.height ||
+        door.y == 0 && door.x >= 0 && door.x <= room.position.width ||
+        door.y == room.position.height && door.x >= 0 && door.x <= room.position.width
+      ) {
+        valid_doors.push(door);
+      }
+    }
+
+    room.doors = valid_doors;
+  }
 }
