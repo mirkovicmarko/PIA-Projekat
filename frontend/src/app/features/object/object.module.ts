@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ObjectRoutingModule } from './object-routing.module';
-import { NewModule } from './new/new.module';
+import { UpsertModule } from './upsert/upsert.module';
 import { ListModule } from './list/list.module';
 
 
@@ -11,7 +11,7 @@ import { ListModule } from './list/list.module';
   imports: [
     CommonModule,
     ObjectRoutingModule,
-    NewModule,
+    UpsertModule,
     ListModule
   ]
 })

@@ -1,10 +1,10 @@
 import { USER_TYPES } from "@consts";
-import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+
 
 const UserModel = new mongoose.Schema({
     _id: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         auto: true
     },
     username: {
@@ -79,7 +79,7 @@ const UserModel = new mongoose.Schema({
             comments: {
                 type: Array<{
                     author: {
-                        type: String,
+                        type: mongoose.Schema.Types.ObjectId,
                         required: true
                     },
                     text: {

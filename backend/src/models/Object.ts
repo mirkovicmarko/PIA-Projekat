@@ -1,6 +1,6 @@
 import { MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from "@consts";
-import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+
 
 class ObjectRoomDoor {
     x: number;
@@ -22,7 +22,7 @@ class ObjectRoom {
 
 const ObjectModel = new mongoose.Schema({
     _id: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         auto: true
     },
     type: {
@@ -47,9 +47,10 @@ const ObjectModel = new mongoose.Schema({
         min: 1
     },
     owner: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
 });
+
 
 export default mongoose.model('objectModel', ObjectModel, 'Objects');

@@ -7,7 +7,7 @@ import { SESSION_DATA } from "@consts";
 type Object = InferSchemaType<typeof ObjectModel.schema>;
 
 export default function get_info(req, res: Response) {
-    let user_id = req.session[SESSION_DATA.user_id];
+    const user_id = req.session[SESSION_DATA.user_id];
 
     if (user_id === undefined) {
         res.statusCode = 401;

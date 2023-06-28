@@ -29,10 +29,37 @@ export class ObjectService {
     await firstValueFrom(post);
   }
 
+  async change(object: Object) {
+    const post_body = {
+      object: object
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/change',
+      post_body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
   get_all() {
     const get = this.http.get(
       this.endpoint_address + '/get_all',
       { withCredentials: true }
+    );
+
+    return firstValueFrom(get);
+  }
+
+  get(id: number) {
+    const params = {
+      'id': id
+    };
+
+    const get = this.http.get(
+      this.endpoint_address + '/get',
+      { withCredentials: true, params: params }
     );
 
     return firstValueFrom(get);

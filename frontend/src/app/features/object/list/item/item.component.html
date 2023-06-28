@@ -6,7 +6,7 @@
         <p class="object-quadrature">Kvadratura: {{ object.quadrature }}</p>
     </div>
     <div>
-        <!--<button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>-->
+        <button routerLink="/objects/change" [queryParams]="{ 'id': object._id }">Izmeni</button>
     </div>
 </div>
 <app-objects-show class="object-picture" [rooms]="object.rooms"></app-objects-show>

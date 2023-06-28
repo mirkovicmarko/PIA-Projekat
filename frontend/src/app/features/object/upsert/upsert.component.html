@@ -44,6 +44,6 @@
 
 <div id="buttons-object">
     <button *ngIf="current_step == 1" (click)="change_step(-1)">Nazad</button>
-    <button *ngIf="current_step == 1" (click)="make()">Napravi</button>
+    <button *ngIf="current_step == 1" (click)="upsert()">Potvrdi</button>
     <button *ngIf="current_step == 0" (click)="change_step(+1)">Dalje</button>
 </div>

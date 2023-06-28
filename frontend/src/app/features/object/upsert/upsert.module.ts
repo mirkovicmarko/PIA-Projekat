@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewComponent } from './new.component';
+import { UpsertComponent } from './upsert.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 
@@ -8,7 +8,7 @@ import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
-    NewComponent
+    UpsertComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +16,7 @@ import { SharedModule } from '@shared/shared.module';
     SharedModule
   ],
   exports: [
-    NewComponent
+    UpsertComponent
   ]
 })
-export class NewModule { }
+export class UpsertModule { }

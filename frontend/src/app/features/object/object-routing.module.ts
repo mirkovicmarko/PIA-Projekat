@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NewComponent } from './new/new.component';
+import { UpsertComponent } from './upsert/upsert.component';
 import { ListComponent } from './list/list.component';
 
 
@@ -11,11 +11,15 @@ const routes: Routes = [
     children: [
       {
         path: 'new',
-        component: NewComponent
+        component: UpsertComponent
       },
       {
         path: 'list',
         component: ListComponent
+      },
+      {
+        path: 'change',
+        component: UpsertComponent
       }
     ]
   }
