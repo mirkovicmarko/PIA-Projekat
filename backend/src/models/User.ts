@@ -1,8 +1,11 @@
 import { USER_TYPES } from "@consts";
 import mongoose from "mongoose";
+import ClientSchema from "./User/Client";
+import AgencySchema from "./User/Agency";
+import VerificationSchema from "./User/Verification";
 
 
-const UserModel = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         auto: true
@@ -42,112 +45,17 @@ const UserModel = new mongoose.Schema({
     },
 
     client: {
-        _id: false,
-        type: {
-            first_name: {
-                type: String,
-                required: true
-            },
-            last_name: {
-                type: String,
-                required: true
-            }
-        },
-        default: null,
-        required: false
+        type: ClientSchema,
+        default: null
     },
-
     agency: {
-        _id: false,
-        type: {
-            name: {
-                type: String,
-                required: true
-            },
-            address: {
-                type: String,
-                required: true
-            },
-            id: {
-                type: String,
-                required: true
-            },
-            description: {
-                type: String,
-                required: true
-            },
-            comments: {
-                type: Array<{
-                    author: {
-                        type: mongoose.Schema.Types.ObjectId,
-                        required: true
-                    },
-                    text: {
-                        type: String,
-                        required: true
-                    },
-                    title: {
-                        type: String,
-                        required: true
-                    },
-                    rating: {
-                        type: Number,
-                        required: true,
-                        min: 0,
-                        max: 5
-                    }
-                }>,
-                default: []
-            },
-            workers: {
-                type: Array<{
-                    _id: {
-                        type: mongoose.Schema.Types.ObjectId,
-                        auto: true
-                    },
-                    first_name: {
-                        type: String,
-                        required: true
-                    },
-                    last_name: {
-                        type: String,
-                        required: true
-                    },
-                    phone_number: {
-                        type: String,
-                        required: true
-                    },
-                    specialty: {
-                        type: String,
-                        required: true
-                    }
-                }>,
-                default: []
-            },
-            allowed_workers: {
-                type: Number,
-                default: 0
-            }
-        },
-        default: null,
-        required: false
+        type: AgencySchema,
+        default: null
     },
-
     verification: {
-        _id: false,
-        type: {
-            code: {
-                type: String,
-                default: null
-            },
-            time: {
-                type: String,
-                default: null
-            }
-        },
-        default: null,
-        required: false
+        type: VerificationSchema,
+        default: null
     }
 });
 
-export default mongoose.model('userModel', UserModel, 'Users');
+export default mongoose.model('userModel', UserSchema, 'Users');

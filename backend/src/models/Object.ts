@@ -1,24 +1,8 @@
-import { MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from "@consts";
 import mongoose from "mongoose";
 
+import { MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from "@consts";
+import RoomSchema from "./Object/Room";
 
-class ObjectRoomDoor {
-    x: number;
-    y: number;
-}
-
-class ObjectPosition {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-class ObjectRoom {
-    position: ObjectPosition = new ObjectPosition();
-    done: boolean = false;
-    doors: ObjectRoomDoor[] = [];
-}
 
 const ObjectModel = new mongoose.Schema({
     _id: {
@@ -35,7 +19,7 @@ const ObjectModel = new mongoose.Schema({
         required: true
     },
     rooms: {
-        type: Array<ObjectRoom>,
+        type: [RoomSchema],
         required: true,
         validate: (rooms) => {
             return rooms.length >= MIN_ROOMS && rooms.length <= MAX_ROOMS;
