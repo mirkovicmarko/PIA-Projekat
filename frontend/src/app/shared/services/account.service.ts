@@ -11,14 +11,14 @@ import { WEBSITE_URL, USER_TYPES } from '@shared/consts';
 export class AccountService {
 
   user_type: string = USER_TYPES.none;
-  user_id: number = -1;
+  user_id: string = null;
   user_change: EventEmitter<string> = new EventEmitter();
 
   private endpoint_address: string = WEBSITE_URL + "/users";
 
   constructor(private http: HttpClient) { }
 
-  set_user(id:number = -1, type: string = USER_TYPES.none) {
+  set_user(id:string = null, type: string = USER_TYPES.none) {
     this.user_type = type;
     this.user_id = id;
     this.user_change.emit(this.user_type);
@@ -90,7 +90,7 @@ export class AccountService {
     return firstValueFrom(post);
   }
 
-  async forgotten_password(email) {
+  async forgotten_password(email: string) {
     const post = this.http.post(
       this.endpoint_address + '/forgotten_password',
       { email: email }

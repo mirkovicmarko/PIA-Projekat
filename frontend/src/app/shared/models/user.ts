@@ -11,6 +11,7 @@ class AgencyInfo {
     id: string = "";
     description: string = "";
     comments: {
+        _id: string;
         author: number,
         text: string,
         title: string,
@@ -19,7 +20,7 @@ class AgencyInfo {
 };
 
 export default class User {
-    _id: number;
+    _id: string;
 
     username: string = "";
     password: string = "";

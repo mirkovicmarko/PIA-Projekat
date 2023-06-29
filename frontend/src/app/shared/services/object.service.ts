@@ -43,7 +43,7 @@ export class ObjectService {
     await firstValueFrom(post);
   }
 
-  async erase(id: number) {
+  async erase(id: string) {
     const post_body = {
       id: id
     };
@@ -66,7 +66,7 @@ export class ObjectService {
     return firstValueFrom(get);
   }
 
-  get(id: number) {
+  get(id: string) {
     const params = {
       'id': id
     };

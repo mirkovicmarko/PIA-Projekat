@@ -66,7 +66,7 @@ export class ObjectsShowComponent implements AfterViewInit {
     this.canvas_context.fillStyle = "peru";
 
     for(let door of room.doors) {
-      this.canvas_context.fillRect(room.position.x + door.x - door_width / 2, room.position.y + door.y - door_height / 2, door_width, door_height);
+      this.canvas_context.fillRect(room.position.x + door.position.x - door_width / 2, room.position.y + door.position.y - door_height / 2, door_width, door_height);
     }
   }
 

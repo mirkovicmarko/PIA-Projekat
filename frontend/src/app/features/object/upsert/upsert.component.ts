@@ -20,7 +20,7 @@ export class UpsertComponent implements OnInit {
 
   current_step: number = 0;
 
-  protected id: number = undefined;
+  protected id: string = undefined;
 
   object: Object = new Object();
   number_of_rooms: number = MIN_ROOMS;

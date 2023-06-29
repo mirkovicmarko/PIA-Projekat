@@ -91,28 +91,28 @@ export class ObjectsMakeComponent implements AfterViewInit {
         this.current_room_under_door.doors.splice(this.current_room_under_door.doors.indexOf(this.current_door));
       }
 
-      this.current_door.x = event.clientX - bounding_rectange.left;
-      this.current_door.y = event.clientY - bounding_rectange.top;
+      this.current_door.position.x = event.clientX - bounding_rectange.left;
+      this.current_door.position.y = event.clientY - bounding_rectange.top;
 
-      this.current_room_under_door = this.get_room_under(this.current_door.x, this.current_door.y);
+      this.current_room_under_door = this.get_room_under(this.current_door.position.x, this.current_door.position.y);
       if (this.current_room_under_door !== null) {
-        const left = this.current_door.x - this.current_room_under_door.position.x;
-        const right = this.current_room_under_door.position.x + this.current_room_under_door.position.width - this.current_door.x;
-        const bottom = this.current_room_under_door.position.y + this.current_room_under_door.position.height - this.current_door.y;
-        const top = this.current_door.y - this.current_room_under_door.position.y;
+        const left = this.current_door.position.x - this.current_room_under_door.position.x;
+        const right = this.current_room_under_door.position.x + this.current_room_under_door.position.width - this.current_door.position.x;
+        const bottom = this.current_room_under_door.position.y + this.current_room_under_door.position.height - this.current_door.position.y;
+        const top = this.current_door.position.y - this.current_room_under_door.position.y;
 
         if (left <= right && left <= top && left <= bottom) {
-          this.current_door.x = this.current_door.x - left;
+          this.current_door.position.x = this.current_door.position.x - left;
         } else if (right <= left && right <= top && right <= bottom) {
-          this.current_door.x = this.current_door.x + right;
+          this.current_door.position.x = this.current_door.position.x + right;
         } else if (top <= left && top <= right && top <= bottom) {
-          this.current_door.y = this.current_door.y - top;
+          this.current_door.position.y = this.current_door.position.y - top;
         } else {
-          this.current_door.y = this.current_door.y + bottom;
+          this.current_door.position.y = this.current_door.position.y + bottom;
         }
 
-        this.current_door.x = this.current_door.x - this.current_room_under_door.position.x;
-        this.current_door.y = this.current_door.y - this.current_room_under_door.position.y;
+        this.current_door.position.x = this.current_door.position.x - this.current_room_under_door.position.x;
+        this.current_door.position.y = this.current_door.position.y - this.current_room_under_door.position.y;
 
         this.current_room_under_door.doors.push(this.current_door);
       }
@@ -163,10 +163,10 @@ export class ObjectsMakeComponent implements AfterViewInit {
 
     for (let door of room.doors) {
       if (
-        door.x == 0 && door.y >= 0 && door.y <= room.position.height ||
-        door.x == room.position.width && door.y >= 0 && door.y <= room.position.height ||
-        door.y == 0 && door.x >= 0 && door.x <= room.position.width ||
-        door.y == room.position.height && door.x >= 0 && door.x <= room.position.width
+        door.position.x == 0 && door.position.y >= 0 && door.position.y <= room.position.height ||
+        door.position.x == room.position.width && door.position.y >= 0 && door.position.y <= room.position.height ||
+        door.position.y == 0 && door.position.x >= 0 && door.position.x <= room.position.width ||
+        door.position.y == room.position.height && door.position.x >= 0 && door.position.x <= room.position.width
       ) {
         valid_doors.push(door);
       }
