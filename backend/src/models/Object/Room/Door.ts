@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import PositionSchema from "./Door/Position";
+import PositionModel from "./Door/Position";
 
 
 const DoorSchema = new mongoose.Schema({
     position: {
-        type: PositionSchema,
+        type: PositionModel.schema,
         required: true
     }
 }, { _id: false });
 
-export default DoorSchema;
+export default mongoose.model('objectRoomDoorModel', DoorSchema);

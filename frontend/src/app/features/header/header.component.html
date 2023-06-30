@@ -21,6 +21,15 @@
                 <a routerLink="/objects/list">Moji</a>
             </div>
         </div>
+
+        <div class="header-menu-item" *ngIf="user_type == USER_TYPES.agency">
+            <div class="header-menu-item-title">Radnici</div>
+            <div class="header-menu-item-submenu">
+                <a routerLink="/workers/insert">Novi</a>
+                <a routerLink="/workers/all">Moji</a>
+                <a routerLink="/workers/request_more">Zahtevaj mesta</a>
+            </div>
+        </div>
     </div>
     <div id="header-right-side">
         <a *ngIf="user_type == USER_TYPES.none" routerLink="/account/login">Prijavi se</a>

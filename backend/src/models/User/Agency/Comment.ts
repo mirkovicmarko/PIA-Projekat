@@ -26,4 +26,4 @@ const CommentSchema = new mongoose.Schema({
     }
 });
 
-export default CommentSchema;
+export default mongoose.model('userAgencyCommentModel', CommentSchema);

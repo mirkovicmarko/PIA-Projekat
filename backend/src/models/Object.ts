@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 import { MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from "@consts";
-import RoomSchema from "./Object/Room";
+import RoomModel from "./Object/Room";
 
 
-const ObjectModel = new mongoose.Schema({
+const ObjectSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         auto: true
@@ -19,7 +19,7 @@ const ObjectModel = new mongoose.Schema({
         required: true
     },
     rooms: {
-        type: [RoomSchema],
+        type: [RoomModel.schema],
         required: true,
         validate: (rooms) => {
             return rooms.length >= MIN_ROOMS && rooms.length <= MAX_ROOMS;
@@ -37,4 +37,4 @@ const ObjectModel = new mongoose.Schema({
 });
 
 
-export default mongoose.model('objectModel', ObjectModel, 'Objects');
+export default mongoose.model('objectModel', ObjectSchema, 'Objects');

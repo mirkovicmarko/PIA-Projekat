@@ -6,6 +6,7 @@ import { HeaderModule } from './header/header.module';
 import { AccountModule } from './account/account.module';
 import { AgencyModule } from './agency/agency.module';
 import { ObjectModule } from './object/object.module';
+import { WorkerModule } from './worker/worker.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ObjectModule } from './object/object.module';
     CommonModule,
     AccountModule,
     AgencyModule,
-    ObjectModule
+    ObjectModule,
+    WorkerModule
   ],
   exports: [
     HeaderComponent

@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>I-mejl</th>
+        <th>Telefon</th>
+        <th>Specijalnost</th>
+        <th colspan="2">Akcije</th>
+    </tr>
+    <tr *ngFor="let worker of workers">
+        <td>{{ worker.first_name }}</td>
+        <td>{{ worker.last_name }}</td>
+        <td>{{ worker.email }}</td>
+        <td>{{ worker.phone_number }}</td>
+        <td>{{ worker.specialty }}</td>
+        <td class="workers_buttons" routerLink="/workers/edit" [queryParams]="{ 'id': worker._id }">Izmeni</td>
+        <td class="workers_buttons" (click)="erase(worker._id)">Izbriši</td>
+    </tr>
+</table>
+
+<div *ngIf="errors.length > 0">
+    <p *ngFor="let error of errors">{{ error }}</p>
+</div>

@@ -1,0 +1,49 @@
+<table>
+    <tr>
+        <td>
+            <label for="first_name">Ime*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="first_name" id="first_name" [(ngModel)]="worker.first_name" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="last_name">Prezime*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="last_name" id="last_name" [(ngModel)]="worker.last_name" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="email">I-mejl*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="email" id="email" [(ngModel)]="worker.email" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="phone_number">Kontakt telefon*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="phone_number" id="phone_number" [(ngModel)]="worker.phone_number" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="specialty">Specijalnost*&nbsp;</label>
+        </td>
+        <td>
+            <input type="text" name="specialty" id="specialty" [(ngModel)]="worker.specialty" />
+        </td>
+    </tr>
+</table>
+
+<p class="errors" *ngFor="let error of errors">{{ error }}</p>
+
+<p class="messages" *ngFor="let message of messages">{{ message }}</p>
+
+<button id="button_confirm" (click)="confirm()">Potvrdi</button>
+

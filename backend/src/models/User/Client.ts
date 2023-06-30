@@ -12,4 +12,4 @@ const ClientSchema = new mongoose.Schema({
     }
 }, { _id: false });
 
-export default ClientSchema;
+export default mongoose.model('userClientModel', ClientSchema);

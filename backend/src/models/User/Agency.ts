@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-import CommentSchema from "./Agency/Comment";
-import WorkerSchema from "./Agency/Worker";
+import CommentModel from "./Agency/Comment";
+import WorkerModel from "./Agency/Worker";
 
 
 const AgencySchema = new mongoose.Schema({
@@ -22,17 +22,22 @@ const AgencySchema = new mongoose.Schema({
         required: true
     },
     comments: {
-        type: [CommentSchema],
+        type: [CommentModel.schema],
         default: []
     },
     workers: {
-        type: [WorkerSchema],
+        type: [WorkerModel.schema],
         default: []
     },
     allowed_workers: {
         type: Number,
         default: 0
+    },
+    requested_workers: {
+        type: Number,
+        required: false,
+        min: 1
     }
 }, { _id: false });
 
-export default AgencySchema;
+export default mongoose.model('userAgencyModel', AgencySchema);

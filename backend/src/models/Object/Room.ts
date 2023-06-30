@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import PositionSchema from "./Room/Position";
-import DoorSchema from "./Room/Door";
+import PositionModel from "./Room/Position";
+import DoorModel from "./Room/Door";
 
 
 const RoomSchema = new mongoose.Schema({
@@ -9,13 +9,13 @@ const RoomSchema = new mongoose.Schema({
         auto: true
     },
     position: {
-        type: PositionSchema,
+        type: PositionModel.schema,
         required: true
     },
     doors: {
-        type: [DoorSchema],
+        type: [DoorModel.schema],
         default: []
     }
 });
 
-export default RoomSchema;
+export default mongoose.model('objectRoomModel', RoomSchema);

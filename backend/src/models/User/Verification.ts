@@ -12,4 +12,4 @@ const VerificationSchema = new mongoose.Schema({
     }
 }, { _id: false });
 
-export default VerificationSchema;
+export default mongoose.model('userVerificationModel', VerificationSchema);

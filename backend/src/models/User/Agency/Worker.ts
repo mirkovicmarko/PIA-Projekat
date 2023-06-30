@@ -14,6 +14,10 @@ const WorkerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     phone_number: {
         type: String,
         required: true
@@ -24,4 +28,4 @@ const WorkerSchema = new mongoose.Schema({
     }
 });
 
-export default WorkerSchema;
+export default mongoose.model('userAgencyWorkerModel', WorkerSchema);

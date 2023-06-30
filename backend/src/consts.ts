@@ -18,3 +18,7 @@ export const OBJECT_TYPES = {
 }
 
 export const MIN_ROOMS = 1, MAX_ROOMS = 3;
+
+export const REQUEST_TYPES = {
+    more_workers: 'more_workers'
+};

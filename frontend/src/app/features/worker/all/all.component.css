@@ -1,0 +1,27 @@
+table {
+    margin: 0 auto 8px auto;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: var(--black-olive);
+}
+
+table, td, th {
+    border: 1px solid var(--middle-blue-green);
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+.workers_buttons {
+    cursor: pointer;
+}
+
+.errors {
+    margin: 0;
+    text-align: center;
+    color: red;
+}

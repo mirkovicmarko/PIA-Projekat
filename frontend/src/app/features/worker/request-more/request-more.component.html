@@ -1,0 +1,16 @@
+<table>
+    <tr style="border-bottom: 8px solid transparent">
+        <td>
+            <label for="number">Unesite koliko radnih mesta želite da zahtevate&nbsp;</label>
+        </td>
+        <td>
+            <input type="number" min="1" name="number" id="number" [(ngModel)]="number" />
+        </td>
+    </tr>
+</table>
+
+<p class="errors" *ngFor="let error of errors">{{ error }}</p>
+
+<p class="messages" *ngFor="let message of messages">{{ message }}</p>
+
+<button id="button_request" (click)="request()">Zahtevaj</button>

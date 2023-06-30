@@ -1,10 +1,10 @@
 import { Response } from "express";
 import { InferSchemaType } from "mongoose";
 
-import ObjectModel from '@models/Object';
-import { SESSION_DATA } from "@consts";
+import UserModel from '@models/User';
+import { SESSION_DATA, USER_TYPES } from "@consts";
 
-type Object = InferSchemaType<typeof ObjectModel.schema>;
+type User = InferSchemaType<typeof UserModel.schema>;
 
 export default function get_all(req, res: Response) {
     const user_id = req.session[SESSION_DATA.user_id];
@@ -15,9 +15,9 @@ export default function get_all(req, res: Response) {
         return;
     }
 
-    ObjectModel.find({ owner: user_id }).then(
-        (object: Object[]) => {
-            res.send(object);
+    UserModel.findOne({ _id: user_id, type: USER_TYPES.agency }).then(
+        (user: User) => {
+            res.send(user.agency.workers);
         },
         (error) => {
             console.log(error);

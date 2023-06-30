@@ -1,8 +1,9 @@
-import { USER_TYPES } from "@consts";
 import mongoose from "mongoose";
-import ClientSchema from "./User/Client";
-import AgencySchema from "./User/Agency";
-import VerificationSchema from "./User/Verification";
+
+import { USER_TYPES } from "@consts";
+import ClientModel from "./User/Client";
+import AgencyModel from "./User/Agency";
+import VerificationModel from "./User/Verification";
 
 
 const UserSchema = new mongoose.Schema({
@@ -45,15 +46,15 @@ const UserSchema = new mongoose.Schema({
     },
 
     client: {
-        type: ClientSchema,
+        type: ClientModel.schema,
         default: null
     },
     agency: {
-        type: AgencySchema,
+        type: AgencyModel.schema,
         default: null
     },
     verification: {
-        type: VerificationSchema,
+        type: VerificationModel.schema,
         default: null
     }
 });

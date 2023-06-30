@@ -51,6 +51,10 @@ export default function register(req: Request, res: Response) {
     if(!new_user.profile_picture) {
         new_user.profile_picture = default_profile_picture_base64;
     }
+
+    if(new_user.type === USER_TYPES.agency) {
+        new_user.agency.requested_workers = undefined;
+    }
     
     UserModel.find({
         $or: [

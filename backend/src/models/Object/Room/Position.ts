@@ -24,4 +24,4 @@ const PositionSchema = new mongoose.Schema({
     }
 }, { _id: false });
 
-export default PositionSchema;
+export default mongoose.model('objectRoomPositionModel', PositionSchema);
