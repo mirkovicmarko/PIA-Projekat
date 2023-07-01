@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 import { MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from "@consts";
 import RoomModel from "./Object/Room";
+import Job from "./Object/Job";
 
 
 const ObjectSchema = new mongoose.Schema({
@@ -34,6 +35,10 @@ const ObjectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
+    jobs: {
+        type: [Job.schema],
+        default: []
+    }
 });
 
 

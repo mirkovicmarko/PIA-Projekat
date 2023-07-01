@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AgencyService } from '@shared/services/agency.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-agency-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })

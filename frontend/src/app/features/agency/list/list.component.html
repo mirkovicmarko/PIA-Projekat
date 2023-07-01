@@ -10,9 +10,9 @@
     </div>
 </div>
 
-<div id="agencies">
-    <app-item *ngFor="let agency of filtered_agencies" [agency]="agency"></app-item>
-</div>
+<app-list id="agencies">
+    <app-agency-list-item *ngFor="let agency of filtered_agencies" [agency]="agency"></app-agency-list-item>
+</app-list>
 
 <div *ngIf="errors.length > 0">
     <p *ngFor="let error of errors">{{ error }}</p>

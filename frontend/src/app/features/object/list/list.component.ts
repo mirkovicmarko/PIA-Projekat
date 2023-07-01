@@ -6,7 +6,7 @@ import { ObjectService } from '@shared/services/object.service';
 
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-object-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })

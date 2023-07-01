@@ -1,13 +1,16 @@
-<div class="agency-left-side">
-    <div class="agency-text">
+
+<app-list-item>
+    <ng-container ngProjectAs="details">
         <h3 class="agency-name">{{ agency['name'] }}</h3>
         <p class="agency-address">{{ agency['address'] }}</p>
         <p class="agency-description">
             {{ agency['description'] }}
         </p>
-    </div>
-    <div>
+    </ng-container>
+    <ng-container ngProjectAs="controls">
         <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
-    </div>
-</div>
-<img class="agency-profile-picture" [src]="agency['profile_picture']" />
+    </ng-container>
+    <ng-container ngProjectAs="display">
+        <img class="agency-profile-picture" [src]="agency['profile_picture']" />
+    </ng-container>
+</app-list-item>

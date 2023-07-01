@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './list.component';
 import { ItemModule } from './item/item.module';
+import { SharedModule } from '@shared/shared.module';
 
 
 
@@ -11,6 +12,7 @@ import { ItemModule } from './item/item.module';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ItemModule
   ]
 })

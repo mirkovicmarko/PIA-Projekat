@@ -1,7 +1,7 @@
 
-<div id="objects">
-    <app-item *ngFor="let object of objects" [object]="object"></app-item>
-</div>
+<app-list id="objects">
+    <app-object-list-item *ngFor="let object of objects" [object]="object"></app-object-list-item>
+</app-list>
 
 <div *ngIf="errors.length > 0">
     <p *ngFor="let error of errors">{{ error }}</p>

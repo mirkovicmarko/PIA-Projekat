@@ -5,6 +5,8 @@ import { StarComponent } from './ui/star/star.component';
 import { FormsModule } from '@angular/forms';
 import { ObjectsMakeComponent } from './ui/objects-make/objects-make.component';
 import { ObjectsShowComponent } from './ui/objects-show/objects-show.component';
+import { ListComponent } from './ui/list/list.component';
+import { ItemComponent } from './ui/list/item/item.component';
 
 
 
@@ -13,7 +15,9 @@ import { ObjectsShowComponent } from './ui/objects-show/objects-show.component';
     LoadingComponent,
     StarComponent,
     ObjectsMakeComponent,
-    ObjectsShowComponent
+    ObjectsShowComponent,
+    ListComponent,
+    ItemComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { ObjectsShowComponent } from './ui/objects-show/objects-show.component';
     LoadingComponent,
     StarComponent,
     ObjectsMakeComponent,
-    ObjectsShowComponent
+    ObjectsShowComponent,
+    ListComponent,
+    ItemComponent
   ]
 })
 export class SharedModule { }

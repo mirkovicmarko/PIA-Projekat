@@ -19,6 +19,11 @@ export const OBJECT_TYPES = {
 
 export const MIN_ROOMS = 1, MAX_ROOMS = 3;
 
-export const REQUEST_TYPES = {
-    more_workers: 'more_workers'
+export const JOB_STATUSES = {
+    requested: 'requested',
+    offered: 'offered',
+    rejected: 'rejected',
+    active: 'active',
+    canceled: 'canceled',
+    paid: 'paid'
 };

@@ -1,41 +1,4 @@
-:host {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 5px;
-
-    border-left: 5px solid var(--middle-blue-green);
-    padding: 0 10px;
-}
-
-.object-left-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 5px;
-
-    align-self: stretch;
-
-    max-height: inherit;
-}
 
 .object-picture {
-    max-height: inherit;
-    height: auto;
-    max-width: 50%;
-    min-height: 0;
-
-    align-self: center;
-}
-
-@media screen and (max-width: 600px) {
-    :host {
-        flex-direction: column;
-    }
-
-    .object-picture {
-        width: auto;
-        min-height: 100px;
-    }
+    height: 300px;
 }
