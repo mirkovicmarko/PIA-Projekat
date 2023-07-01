@@ -10,3 +10,18 @@ export const OBJECT_TYPES = {
 export const MIN_ROOMS = 1, MAX_ROOMS = 3;
 
 export const CANVAS_DIMENSIONS = 600;
+
+export const JOB_STATUSES = {
+    requested: 'requested',
+    offered: 'offered',
+    rejected: 'rejected',
+    active: 'active',
+    canceled: 'canceled',
+    paid: 'paid'
+};
+
+export const ROOM_RECONSTRUCTION_STATUSES = {
+    done: 'done',
+    awaiting: 'awaiting',
+    undergoing: 'undergoing'
+};

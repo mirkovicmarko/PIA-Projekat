@@ -118,17 +118,9 @@ export class ObjectsMakeComponent implements AfterViewInit {
       }
     }
     else if (this.current_room !== null) {
-      let old_x = this.current_room.position.x;
-      let old_y = this.current_room.position.y;
-
-      this.current_room.position.x = event.clientX - bounding_rectange.left;
-      this.current_room.position.y = event.clientY - bounding_rectange.top;
-
-      if (this.rooms_colliding_with_current()) {
-        this.current_room.position.x = old_x;
-        this.current_room.position.y = old_y;
-        return;
-      }
+      const new_x = event.clientX - bounding_rectange.left;
+      const new_y = event.clientY - bounding_rectange.top;
+      this.calculate_current_room_new_postition(new_x, new_y);
     }
     
     this.objects_show.draw_rooms();
@@ -136,6 +128,32 @@ export class ObjectsMakeComponent implements AfterViewInit {
       this.objects_show.draw_room(this.current_room);
       this.objects_show.draw_doors_of(this.current_room);
     }
+  }
+
+  private calculate_current_room_new_postition(new_x: number, new_y: number) {
+    const old_x = this.current_room.position.x;
+    const old_y = this.current_room.position.y;
+
+    this.current_room.position.x = new_x;
+    this.current_room.position.y = new_y;
+    if (!this.rooms_colliding_with_current()) {
+      return;
+    }
+
+    this.current_room.position.x = old_x;
+    this.current_room.position.y = new_y;
+    if (!this.rooms_colliding_with_current()) {
+      return;
+    }
+
+    this.current_room.position.x = new_x;
+    this.current_room.position.y = old_y;
+    if (!this.rooms_colliding_with_current()) {
+      return;
+    }
+
+    this.current_room.position.x = old_x;
+    this.current_room.position.y = old_y;
   }
 
   private rooms_colliding_with_current() {

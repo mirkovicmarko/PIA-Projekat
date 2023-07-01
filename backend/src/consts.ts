@@ -27,3 +27,9 @@ export const JOB_STATUSES = {
     canceled: 'canceled',
     paid: 'paid'
 };
+
+export const ROOM_RECONSTRUCTION_STATUSES = {
+    done: 'done',
+    awaiting: 'awaiting',
+    undergoing: 'undergoing'
+};

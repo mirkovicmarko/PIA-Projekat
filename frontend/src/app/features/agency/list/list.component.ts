@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
   address_filter: string = "";
 
   private agencies;
-  filtered_agencies;
+  protected filtered_agencies;
 
   errors: string[] =[];
 

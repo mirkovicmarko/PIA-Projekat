@@ -1,0 +1,32 @@
+<app-list-item>
+    <ng-container ngProjectAs="details">
+        <ng-container *ngIf="user_type === USER_TYPES.agency">
+            <h3 class="job-client-name">
+                {{ job['client_info']['first_name'] }}
+                {{ job['client_info']['last_name'] }}
+            </h3>
+            <p class="job-client-email">{{ job['client_info']['email'] }}</p>
+            <p class="job-client-phone-number">{{ job['client_info']['phone_number'] }}</p>
+        </ng-container>
+        <ng-container *ngIf="user_type === USER_TYPES.client">
+            <h3 class="job-agency-name">{{ job['agency_info']['name'] }}</h3>
+            <p class="job-agency-email">{{ job['agency_info']['address'] }}</p>
+            <p class="job-agency-email">{{ job['agency_info']['email'] }}</p>
+            <p class="job-agency-phone-number">{{ job['agency_info']['phone_number'] }}</p>
+        </ng-container>
+        <p class="job-date">
+            {{ format_date(job['start_date']) }}
+            -
+            {{ format_date(job['end_date']) }}
+        </p>
+    </ng-container>
+    <ng-container ngProjectAs="controls">
+        <!--
+        <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
+        <button *ngIf="user_type === USER_TYPES.client" routerLink="/agencies/request_job" [queryParams]="{ 'id': agency['_id'] }">Saradnja</button>
+        -->
+    </ng-container>
+    <ng-container ngProjectAs="display">
+        <app-objects-show class="job-object-picture" [rooms]="job['object']['rooms']"></app-objects-show>
+    </ng-container>
+</app-list-item>

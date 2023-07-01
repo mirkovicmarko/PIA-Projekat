@@ -30,10 +30,6 @@ export class AllComponent implements OnInit {
     );
   }
 
-  edit(id: string) {
-    
-  }
-
   erase(id: string) {
     this.workerService.erase(id).then(
       () => {
