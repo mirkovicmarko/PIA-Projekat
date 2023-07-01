@@ -1,0 +1,15 @@
+
+<app-list-item>
+    <ng-container ngProjectAs="details">
+        <p class="object-type"><strong>Tip:</strong> {{ object.type == OBJECT_TYPES.flat ? "Stan" : (object.type == OBJECT_TYPES.house ? "Kuća" : "") }}</p>
+        <p class="object-address"><strong>Adresa:</strong> {{ object.address }}</p>
+        <p class="object-number-of-rooms"><strong>Broj soba:</strong> {{ object.rooms.length }}</p>
+        <p class="object-quadrature"><strong>Kvadratura:</strong> {{ object.quadrature }}</p>
+    </ng-container>
+    <ng-container ngProjectAs="controls">
+        <button (click)="choose()">Izaberi</button>
+    </ng-container>
+    <ng-container ngProjectAs="display">
+        <app-objects-show class="object-picture" [rooms]="object.rooms"></app-objects-show>
+    </ng-container>
+</app-list-item>

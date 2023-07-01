@@ -7,6 +7,6 @@ const DoorSchema = new mongoose.Schema({
         type: PositionModel.schema,
         required: true
     }
-}, { _id: false });
+}, { _id: false, autoCreate: false, autoIndex: false });
 
 export default mongoose.model('objectRoomDoorModel', DoorSchema);

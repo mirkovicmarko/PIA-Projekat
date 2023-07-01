@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="header-menu-item" *ngIf="user_type != USER_TYPES.none">
+        <div class="header-menu-item" *ngIf="user_type == USER_TYPES.client">
             <div class="header-menu-item-title">Objekti</div>
             <div class="header-menu-item-submenu">
                 <a routerLink="/objects/new">Novi</a>

@@ -21,14 +21,18 @@ const JobSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Date,
         required: true,
         validate: function(value) {
-            return value > this.startDate;
+            return value > this.get('start_date');
         },
+    },
+    agency_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     },
     price: {
         type: Number,
         required: false,
         min: 0
     }
-});
+}, { autoCreate: false, autoIndex: false });
 
 export default mongoose.model('objectJobModel', JobSchema);

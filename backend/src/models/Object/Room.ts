@@ -16,6 +16,6 @@ const RoomSchema = new mongoose.Schema({
         type: [DoorModel.schema],
         default: []
     }
-});
+}, { autoCreate: false, autoIndex: false });
 
 export default mongoose.model('objectRoomModel', RoomSchema);

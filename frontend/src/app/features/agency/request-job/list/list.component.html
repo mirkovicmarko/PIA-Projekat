@@ -1,0 +1,8 @@
+
+<app-list id="objects">
+    <app-request-job-list-item *ngFor="let object of objects" [object]="object" (choosen_object_event)="choosen($event)"></app-request-job-list-item>
+</app-list>
+
+<div *ngIf="errors.length > 0">
+    <p *ngFor="let error of errors">{{ error }}</p>
+</div>

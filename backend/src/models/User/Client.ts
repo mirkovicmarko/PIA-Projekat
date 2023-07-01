@@ -10,6 +10,6 @@ const ClientSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-}, { _id: false });
+}, { _id: false, autoCreate: false, autoIndex: false });
 
 export default mongoose.model('userClientModel', ClientSchema);

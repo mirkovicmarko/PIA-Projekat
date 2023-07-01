@@ -24,6 +24,6 @@ const CommentSchema = new mongoose.Schema({
         min: 0,
         max: 5
     }
-});
+}, { autoCreate: false, autoIndex: false });
 
 export default mongoose.model('userAgencyCommentModel', CommentSchema);

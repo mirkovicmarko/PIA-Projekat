@@ -15,7 +15,7 @@ workers_router.route('/get_all')
     .get((req: express.Request, res: express.Response) => workers_controller.get_all(req, res));
 workers_router.route('/get')
     .get((req: express.Request, res: express.Response) => workers_controller.get(req, res));
-    workers_router.route('/more_workers')
+workers_router.route('/more_workers')
     .post((req: express.Request, res: express.Response) => workers_controller.more_workers(req, res));
 
     

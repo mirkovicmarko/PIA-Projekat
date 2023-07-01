@@ -38,6 +38,6 @@ const AgencySchema = new mongoose.Schema({
         required: false,
         min: 1
     }
-}, { _id: false });
+}, { _id: false, autoCreate: false, autoIndex: false });
 
 export default mongoose.model('userAgencyModel', AgencySchema);

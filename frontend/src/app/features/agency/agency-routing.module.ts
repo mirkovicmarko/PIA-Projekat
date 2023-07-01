@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListComponent } from './list/list.component';
 import { ShowComponent } from './show/show.component';
+import { RequestJobComponent } from './request-job/request-job.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
         {
           path: 'show',
           component: ShowComponent
+        },
+        {
+          path: 'request_job',
+          component: RequestJobComponent
         }
       ]
     }

@@ -26,6 +26,6 @@ const WorkerSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-});
+}, { autoCreate: false, autoIndex: false });
 
 export default mongoose.model('userAgencyWorkerModel', WorkerSchema);

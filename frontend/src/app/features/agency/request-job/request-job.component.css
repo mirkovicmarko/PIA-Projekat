@@ -1,0 +1,24 @@
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto 8px auto;
+}
+
+#command_buttons {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.errors,
+.messages {
+    margin: 8px 0;
+    text-align: center;
+}
+
+.errors {
+    color: red;
+}
+
+.messages {
+    color: green;
+}

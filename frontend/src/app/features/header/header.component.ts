@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { USER_TYPES } from '@shared/consts';
 import { AccountService } from '@shared/services/account.service';
+
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return USER_TYPES; 
   }
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.user_subscription = this.accountService.user_change.subscribe((user_type) => this.user_type = user_type);

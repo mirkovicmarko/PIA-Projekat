@@ -12,6 +12,6 @@ const PositionSchema = new mongoose.Schema({
         required: true,
         min: 0
     }
-}, { _id: false });
+}, { _id: false, autoCreate: false, autoIndex: false });
 
 export default mongoose.model('objectRoomDoorPositionModel', PositionSchema);

@@ -9,6 +9,7 @@
     </ng-container>
     <ng-container ngProjectAs="controls">
         <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
+        <button *ngIf="user_type === USER_TYPES.client" routerLink="/agencies/request_job" [queryParams]="{ 'id': agency['_id'] }">Saradnja</button>
     </ng-container>
     <ng-container ngProjectAs="display">
         <img class="agency-profile-picture" [src]="agency['profile_picture']" />
