@@ -21,12 +21,12 @@
         </p>
     </ng-container>
     <ng-container ngProjectAs="controls">
-        <!--
-        <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
-        <button *ngIf="user_type === USER_TYPES.client" routerLink="/agencies/request_job" [queryParams]="{ 'id': agency['_id'] }">Saradnja</button>
-        -->
+        <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.requested">
+            <button (click)="accept()">Prihvati</button>
+            <button (click)="decline()">Odbij</button>
+        </ng-container>
     </ng-container>
     <ng-container ngProjectAs="display">
-        <app-objects-show class="job-object-picture" [rooms]="job['object']['rooms']"></app-objects-show>
+        <app-objects-show class="job-object-picture" [object]="job['object']" [show_status]="job_active"></app-objects-show>
     </ng-container>
 </app-list-item>

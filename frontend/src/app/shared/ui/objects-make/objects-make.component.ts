@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ObjectRoom, ObjectRoomDoor } from '@shared/models/object';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import Object, { ObjectRoom, ObjectRoomDoor } from '@shared/models/object';
 import { ObjectsShowComponent } from '../objects-show/objects-show.component';
 
 @Component({
@@ -11,7 +11,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
   @Input()
   public max_num_of_rooms: number;
   @Input()
-  public rooms: ObjectRoom[];
+  public object: Object;
 
   @ViewChild('canvasObjects', {static: false})
   private objects_show: ObjectsShowComponent;
@@ -21,7 +21,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
   protected current_room_under_door: ObjectRoom = null;
 
   public get_rooms() {
-    return this.rooms;
+    return this.object.rooms;
   }
 
   constructor() {}
@@ -30,8 +30,8 @@ export class ObjectsMakeComponent implements AfterViewInit {
     this.objects_show.get_canvas().addEventListener('click', (event) => this.click_event(event));
     this.objects_show.get_canvas().addEventListener('mousemove', (event) => this.move_event(event));
 
-    if(this.rooms.length > this.max_num_of_rooms) {
-      this.rooms.splice(this.max_num_of_rooms - 1, this.rooms.length - this.max_num_of_rooms);
+    if(this.object.rooms.length > this.max_num_of_rooms) {
+      this.object.rooms.splice(this.max_num_of_rooms - 1, this.object.rooms.length - this.max_num_of_rooms);
     }
 
     this.objects_show.draw_rooms();
@@ -52,13 +52,13 @@ export class ObjectsMakeComponent implements AfterViewInit {
   protected edit_room(room: ObjectRoom) {
     if(this.current_door !== null || this.current_room !== null) return;
 
-    this.current_room = this.rooms.splice(this.rooms.indexOf(room), 1)[0];
+    this.current_room = this.object.rooms.splice(this.object.rooms.indexOf(room), 1)[0];
   }
 
   protected delete_room(room: ObjectRoom) {
     if(this.current_door !== null || this.current_room !== null) return;
 
-    this.rooms.splice(this.rooms.indexOf(room), 1);
+    this.object.rooms.splice(this.object.rooms.indexOf(room), 1);
 
     this.objects_show.draw_rooms();
   }
@@ -67,7 +67,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
     if((this.current_room === null || this.rooms_colliding_with_current()) && this.current_door === null) return;
 
     if(this.current_room !== null) {
-      this.rooms.push(this.current_room);
+      this.object.rooms.push(this.current_room);
       this.current_room = null;
     }
     else if(this.current_door !== null) {
@@ -157,7 +157,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
   }
 
   private rooms_colliding_with_current() {
-    for(let room of this.rooms) {
+    for(let room of this.object.rooms) {
       if(room.position.x + room.position.width > this.current_room.position.x
         && room.position.x < this.current_room.position.x + this.current_room.position.width
         && room.position.y + room.position.height > this.current_room.position.y
@@ -168,7 +168,7 @@ export class ObjectsMakeComponent implements AfterViewInit {
   }
 
   private get_room_under(x: number, y: number) {
-    for(let room of this.rooms) {
+    for(let room of this.object.rooms) {
       if(room.position.x + room.position.width >= x && room.position.x <= x
         && room.position.y + room.position.height >= y && room.position.y <= y
       ) return room;

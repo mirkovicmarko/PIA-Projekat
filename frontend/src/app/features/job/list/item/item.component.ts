@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { USER_TYPES } from '@shared/consts';
+import { JOB_STATUSES, JOB_STATUSES_GROUPED, USER_TYPES } from '@shared/consts';
 import { AccountService } from '@shared/services/account.service';
-import { Subscription } from 'rxjs';
+import { JobService } from '@shared/services/job.service';
+
 
 @Component({
   selector: 'app-job-list-item',
@@ -19,7 +21,15 @@ export class ItemComponent implements OnInit {
     return USER_TYPES; 
   }
 
-  constructor(private accountService: AccountService) { }
+  public get JOB_STATUSES() {
+    return JOB_STATUSES;
+  }
+
+  public get job_active() {
+    return JOB_STATUSES_GROUPED.undergoing.includes(this.job['status']); 
+  }
+
+  constructor(private accountService: AccountService, private jobService: JobService) { }
 
   ngOnInit(): void {
     this.user_type = this.accountService.user_type;
@@ -37,5 +47,38 @@ export class ItemComponent implements OnInit {
     const year_format = year;
 
     return day + '/' + month + '/' + year;
+  }
+
+  accept() {
+    let amount: number;
+    try {
+      amount = parseInt(prompt("Iznos za kompenzaciju:"));
+    }
+    catch(error) {
+      alert('Unesite ispravnu sumu.');
+      return;
+    }
+
+    this.jobService.accept(this.job['_id'], amount).then(
+      () => {
+        alert('Uspešno ste poslali ponudu.');
+        this.job['status'] = JOB_STATUSES.offered;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  decline() {
+    this.jobService.decline(this.job['_id']).then(
+      () => {
+        alert('Uspešno ste odbili ponudu.');
+        this.job['status'] = JOB_STATUSES.declined;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
   }
 }

@@ -1,5 +1,9 @@
 <div id="filters">
-    
+    Status: 
+    <button (click)="filter_by('done')">Završeni</button>
+    <button (click)="filter_by('active')">Aktivni</button>
+    <button (click)="filter_by('requested')">Zahtevani</button>
+    <button (click)="filter_by('all')">Svi</button>
 </div>
 
 <app-list id="jobs">

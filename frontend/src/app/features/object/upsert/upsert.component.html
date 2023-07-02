@@ -42,7 +42,7 @@
     </tr>
 </table>
 
-<app-objects-make #canvasObjects *ngIf="current_step == 1" [max_num_of_rooms]="number_of_rooms" [rooms]="object.rooms" [style]="{width: CANVAS_DIMENSIONS}"></app-objects-make>
+<app-objects-make #canvasObjects *ngIf="current_step == 1" [max_num_of_rooms]="number_of_rooms" [object]="object" [style]="{width: CANVAS_DIMENSIONS}"></app-objects-make>
 
 <ng-container *ngIf="current_step == 1">
     <p class="errors" *ngFor="let error of errors">{{ error }}</p>

@@ -1,4 +1,4 @@
-import { OBJECT_TYPES, ROOM_RECONSTRUCTION_STATUSES } from "@shared/consts";
+import { OBJECT_TYPES, CONSTRUCTION_STATUSES } from "@shared/consts";
 
 
 export class ObjectRoomDoor {
@@ -18,7 +18,7 @@ export class ObjectRoom {
         height: number;
     } = { x: 0, y: 0, width: 0, height: 0 };
     doors: ObjectRoomDoor[] = [];
-    reconstruction_status = ROOM_RECONSTRUCTION_STATUSES.done;
+    reconstruction_status = CONSTRUCTION_STATUSES.done;
 }
 
 export default class Object {
@@ -28,4 +28,5 @@ export default class Object {
     rooms: ObjectRoom[] = [];
     quadrature: number = 1;
     owner: number;
+    status: string;
 }

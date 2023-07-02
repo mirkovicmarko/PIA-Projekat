@@ -13,6 +13,8 @@ export class ListComponent implements OnInit {
   private jobs;
   protected filtered_jobs = [];
 
+  private filters: string[] = [];
+
   protected errors: string[] = [];
 
   protected get JOB_STATUSES() {
@@ -27,7 +29,6 @@ export class ListComponent implements OnInit {
 
     this.jobService.get_all().then(
       (response) => {
-        console.log(response)
         this.jobs = response;
         this.update();
       },
@@ -37,8 +38,42 @@ export class ListComponent implements OnInit {
     );
   }
 
+  protected filter_by(type: string) {
+    this.filters = [];
+
+    switch(type) {
+      case 'requested':
+        this.filters.push(JOB_STATUSES.requested);
+        this.filters.push(JOB_STATUSES.offered);
+        break;
+      case 'active':
+        this.filters.push(JOB_STATUSES.active);
+        break;
+      case 'done':
+        this.filters.push(JOB_STATUSES.paid);
+        this.filters.push(JOB_STATUSES.canceled);
+        this.filters.push(JOB_STATUSES.rejected);
+        this.filters.push(JOB_STATUSES.declined);
+        break;
+      case 'all':
+        break;
+    }
+
+    this.update();
+  }
+
   private update() {
-    this.filtered_jobs = this.jobs;
+    if(this.filters.length > 0) {
+      this.filtered_jobs = [];
+
+      for(let job of this.jobs) {
+        if(this.filters.includes(job['status']))
+          this.filtered_jobs.push(job);
+      }
+    }
+    else {
+      this.filtered_jobs = this.jobs;
+    }
   }
 
 }

@@ -1,9 +1,8 @@
 import { Response } from "express";
-import { InferSchemaType } from "mongoose";
 
 import ObjectModel from '@models/Object';
 import JobModel from '@models/Object/Job';
-import { JOB_STATUSES, SESSION_DATA } from "@consts";
+import { JOB_STATUSES, CONSTRUCTION_STATUSES, SESSION_DATA } from "@consts";
 
 
 export default async function request_job(req, res: Response) {
@@ -40,7 +39,7 @@ export default async function request_job(req, res: Response) {
                 return null;
             }
 
-            return object
+            return object;
         },
         (error) => {
             console.log(error);
@@ -83,6 +82,7 @@ export default async function request_job(req, res: Response) {
     }
 
     object.jobs.push(new_job);
+    object.status = CONSTRUCTION_STATUSES.awaiting;
 
     object.save().then(
         () => {

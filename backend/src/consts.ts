@@ -21,6 +21,7 @@ export const MIN_ROOMS = 1, MAX_ROOMS = 3;
 
 export const JOB_STATUSES = {
     requested: 'requested',
+    declined: 'declined',
     offered: 'offered',
     rejected: 'rejected',
     active: 'active',
@@ -28,7 +29,7 @@ export const JOB_STATUSES = {
     paid: 'paid'
 };
 
-export const ROOM_RECONSTRUCTION_STATUSES = {
+export const CONSTRUCTION_STATUSES = {
     done: 'done',
     awaiting: 'awaiting',
     undergoing: 'undergoing'

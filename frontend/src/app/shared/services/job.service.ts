@@ -17,4 +17,33 @@ export class JobService {
 
     return firstValueFrom(get);
   }
+
+  async accept(id: string, amount: number) {
+    const post_body = {
+      id: id,
+      amount: amount
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/accept',
+      post_body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async decline(id: string) {
+    const post_body = {
+      id: id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/decline',
+      post_body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
 }

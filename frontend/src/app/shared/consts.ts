@@ -13,6 +13,7 @@ export const CANVAS_DIMENSIONS = 600;
 
 export const JOB_STATUSES = {
     requested: 'requested',
+    declined: 'declined',
     offered: 'offered',
     rejected: 'rejected',
     active: 'active',
@@ -20,8 +21,14 @@ export const JOB_STATUSES = {
     paid: 'paid'
 };
 
-export const ROOM_RECONSTRUCTION_STATUSES = {
+export const CONSTRUCTION_STATUSES = {
     done: 'done',
     awaiting: 'awaiting',
     undergoing: 'undergoing'
 };
+
+export const JOB_STATUSES_GROUPED = {
+    done: [JOB_STATUSES.canceled, JOB_STATUSES.paid, JOB_STATUSES.rejected, JOB_STATUSES.declined],
+    awaiting: [JOB_STATUSES.requested, JOB_STATUSES.offered],
+    undergoing: [JOB_STATUSES.active]
+}

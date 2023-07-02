@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { CANVAS_DIMENSIONS, ROOM_RECONSTRUCTION_STATUSES } from '@shared/consts';
+import { CANVAS_DIMENSIONS, CONSTRUCTION_STATUSES } from '@shared/consts';
 
-import { ObjectRoom } from '@shared/models/object';
+import Object, { ObjectRoom } from '@shared/models/object';
 
 
 @Component({
@@ -11,10 +11,10 @@ import { ObjectRoom } from '@shared/models/object';
 })
 export class ObjectsShowComponent implements AfterViewInit {
   @Input()
-  public rooms: ObjectRoom[];
+  public object: Object;
 
   @Input()
-  public in_progress: boolean = false;
+  public show_status: boolean = false;
 
   @ViewChild('canvasObjects', {static: false})
   private canvas_element: ElementRef<HTMLCanvasElement>;
@@ -46,11 +46,11 @@ export class ObjectsShowComponent implements AfterViewInit {
   public draw_rooms() {
     this.clear_canvas();
 
-    for(let room of this.rooms) {
+    for(let room of this.object.rooms) {
       this.draw_room(room);
     }
 
-    for(let room of this.rooms) {
+    for(let room of this.object.rooms) {
       this.draw_doors_of(room);
     }
   }
@@ -61,7 +61,7 @@ export class ObjectsShowComponent implements AfterViewInit {
 
     this.canvas_context.beginPath();
 
-    if(this.in_progress) {
+    if(this.show_status && this.object.status !== CONSTRUCTION_STATUSES.done) {
       this.canvas_context.fillStyle = this.get_room_color(room);
       this.canvas_context.globalAlpha = 0.3;
 
@@ -76,11 +76,11 @@ export class ObjectsShowComponent implements AfterViewInit {
 
   private get_room_color(room: ObjectRoom) {
     switch(room.reconstruction_status) {
-      case ROOM_RECONSTRUCTION_STATUSES.done:
+      case CONSTRUCTION_STATUSES.done:
         return 'limegreen';
-      case ROOM_RECONSTRUCTION_STATUSES.awaiting:
+      case CONSTRUCTION_STATUSES.awaiting:
         return 'gold';
-      case ROOM_RECONSTRUCTION_STATUSES.undergoing:
+      case CONSTRUCTION_STATUSES.undergoing:
         return 'red';
       default:
         return 'white';

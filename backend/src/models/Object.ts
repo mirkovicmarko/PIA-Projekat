@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { MAX_ROOMS, MIN_ROOMS, OBJECT_TYPES } from "@consts";
+import { MAX_ROOMS, MIN_ROOMS, CONSTRUCTION_STATUSES, OBJECT_TYPES } from "@consts";
 import RoomModel from "./Object/Room";
 import Job from "./Object/Job";
 
@@ -38,6 +38,11 @@ const ObjectSchema = new mongoose.Schema({
     jobs: {
         type: [Job.schema],
         default: []
+    },
+    status: {
+        type: String,
+        enum: Object.keys(CONSTRUCTION_STATUSES),
+        default: CONSTRUCTION_STATUSES.done
     }
 });
 

@@ -36,7 +36,7 @@ const AgencySchema = new mongoose.Schema({
     requested_workers: {
         type: Number,
         required: false,
-        min: 1
+        min: 0
     }
 }, { _id: false, autoCreate: false, autoIndex: false });
 
