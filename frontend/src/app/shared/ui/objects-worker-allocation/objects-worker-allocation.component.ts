@@ -18,11 +18,15 @@ export class ObjectsWorkerAllocationComponent implements AfterViewInit, OnInit {
   @ViewChild('canvasObjects', {static: false})
   private objects_show: ObjectsShowComponent;
 
-  protected selected_workers: Worker[] = [];
+  protected selected_workers: Worker[][] = [];
 
   protected show_workers_modal: boolean = false;
 
   protected current_room: ObjectRoom = null;
+
+  public get_allocation() {
+    return this.selected_workers;
+  }
 
   constructor() { }
 

@@ -25,6 +25,10 @@ const WorkerSchema = new mongoose.Schema({
     specialty: {
         type: String,
         required: true
+    },
+    allocated: {
+        type: Boolean,
+        default: false
     }
 }, { autoCreate: false, autoIndex: false });
 

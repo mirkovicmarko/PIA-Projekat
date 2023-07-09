@@ -15,6 +15,7 @@ import { ObjectsMakeComponent } from '@shared/ui/objects-make/objects-make.compo
   styleUrls: ['./upsert.component.css']
 })
 export class UpsertComponent implements OnInit {
+  
   @ViewChild('canvasObjects', {static: false})
   private canvas_element: ObjectsMakeComponent;
 

@@ -25,7 +25,7 @@ export default function accept_offer(req, res: Response) {
         { 'jobs._id': id, owner: user_id },
         {
             'jobs.$[elem].status': JOB_STATUSES.awaiting,
-            status: CONSTRUCTION_STATUSES.undergoing,
+            status: CONSTRUCTION_STATUSES.awaiting,
             'rooms.$[].reconstruction_status': CONSTRUCTION_STATUSES.awaiting
         },
         { 

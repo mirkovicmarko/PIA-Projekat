@@ -43,8 +43,14 @@ export class WorkerService {
     await firstValueFrom(post);
   }
 
-  get_all() {
-    const get = this.http.get(this.endpoint_address + '/get_all', { withCredentials: true });
+  get_all(allocated: boolean = undefined) {
+    const params = {};
+
+    if(allocated !== undefined) {
+      params['allocated'] = allocated;
+    }
+
+    const get = this.http.get(this.endpoint_address + '/get_all', { withCredentials: true, params: params });
 
     return firstValueFrom(get);
   }

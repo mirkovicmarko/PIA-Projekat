@@ -19,5 +19,7 @@ jobs_router.route('/accept_offer')
     .post((req: express.Request, res: express.Response) => jobs_controller.accept_offer(req, res));
 jobs_router.route('/decline_offer')
     .post((req: express.Request, res: express.Response) => jobs_controller.decline_offer(req, res));
+jobs_router.route('/allocate_workers')
+    .post((req: express.Request, res: express.Response) => jobs_controller.allocate_workers(req, res));
 
 export default jobs_router;

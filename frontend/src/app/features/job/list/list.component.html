@@ -7,7 +7,7 @@
 </div>
 
 <app-list id="jobs">
-    <app-job-list-item *ngFor="let job of filtered_jobs" [job]="job"></app-job-list-item>
+    <app-job-list-item *ngFor="let job of filtered_jobs" [job]="job" (change_event)="reload_page()"></app-job-list-item>
 </app-list>
 
 <div *ngIf="errors.length > 0">

@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JOB_STATUSES, JOB_STATUSES_GROUPED, USER_TYPES } from '@shared/consts';
 import { AccountService } from '@shared/services/account.service';
 import { JobService } from '@shared/services/job.service';
@@ -11,6 +12,8 @@ import { JobService } from '@shared/services/job.service';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
+  @Output()
+  change_event = new EventEmitter<boolean>();
 
   @Input()
   public job;
@@ -29,7 +32,7 @@ export class ItemComponent implements OnInit {
     return JOB_STATUSES_GROUPED.undergoing.includes(this.job['status']); 
   }
 
-  constructor(private accountService: AccountService, private jobService: JobService) { }
+  constructor(private accountService: AccountService, private jobService: JobService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.user_type = this.accountService.user_type;
@@ -49,6 +52,10 @@ export class ItemComponent implements OnInit {
     return day_format + '/' + month_format + '/' + year_format;
   }
 
+  private signal_update() {
+    this.change_event.emit(true);
+  }
+
   offer() {
     let amount: number;
     try {
@@ -62,7 +69,7 @@ export class ItemComponent implements OnInit {
     this.jobService.offer(this.job['_id'], amount).then(
       () => {
         alert('Uspešno ste poslali ponudu.');
-        this.job['status'] = JOB_STATUSES.offered;
+        this.signal_update();
       },
       (error: HttpErrorResponse) => {
         alert(error.error);
@@ -74,7 +81,7 @@ export class ItemComponent implements OnInit {
     this.jobService.decline_request(this.job['_id']).then(
       () => {
         alert('Uspešno ste odbili zahtev.');
-        this.job['status'] = JOB_STATUSES.declined;
+        this.signal_update();
       },
       (error: HttpErrorResponse) => {
         alert(error.error);
@@ -86,7 +93,7 @@ export class ItemComponent implements OnInit {
     this.jobService.accept_offer(this.job['_id']).then(
       () => {
         alert('Uspešno ste prihvatili ponudu.');
-        this.job['status'] = JOB_STATUSES.awaiting;
+        this.signal_update();
       },
       (error: HttpErrorResponse) => {
         alert(error.error);
@@ -98,7 +105,7 @@ export class ItemComponent implements OnInit {
     this.jobService.decline_offer(this.job['_id']).then(
       () => {
         alert('Uspešno ste odbili ponudu.');
-        this.job['status'] = JOB_STATUSES.declined;
+        this.signal_update();
       },
       (error: HttpErrorResponse) => {
         alert(error.error);

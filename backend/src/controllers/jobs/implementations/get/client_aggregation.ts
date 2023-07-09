@@ -11,7 +11,7 @@ export default function client_aggregation(user_id: string, job_id: string = und
     return [
         {
             $match: {
-                'jobs.agency_id': new mongoose.Types.ObjectId(user_id)
+                'owner': new mongoose.Types.ObjectId(user_id)
             }
         },
         {

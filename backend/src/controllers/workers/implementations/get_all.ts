@@ -9,13 +9,21 @@ type User = InferSchemaType<typeof UserModel.schema>;
 export default function get_all(req, res: Response) {
     const user_id = req.session[SESSION_DATA.user_id];
 
+    const allocated = req.query['allocated'];
+
     if (user_id === undefined) {
         res.statusCode = 401;
         res.send();
         return;
     }
 
-    UserModel.findOne({ _id: user_id, type: USER_TYPES.agency }).then(
+    const query = { _id: user_id, type: USER_TYPES.agency };
+
+    if(allocated !== undefined) {
+        query['allocated'] = allocated;
+    }
+
+    UserModel.findOne(query).then(
         (user: User) => {
             res.send(user.agency.workers);
         },

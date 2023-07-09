@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { JOB_STATUSES } from '@shared/consts';
+import { ActivatedRoute } from '@angular/router';
+import { JOB_STATUSES, WEBSITE_URL } from '@shared/consts';
 import { JobService } from '@shared/services/job.service';
 
 @Component({
@@ -17,11 +18,13 @@ export class ListComponent implements OnInit {
 
   protected errors: string[] = [];
 
+  private type: string;
+
   protected get JOB_STATUSES() {
     return JOB_STATUSES;
   }
 
-  constructor(private jobService: JobService) { }
+  constructor(private jobService: JobService, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.errors = [];
@@ -31,6 +34,11 @@ export class ListComponent implements OnInit {
       (response) => {
         this.jobs = response;
         this.update();
+
+        this.type = this.activeRoute.snapshot.queryParams['type'];
+        if(this.type !== undefined) {
+          this.filter_by(this.type);
+        }
       },
       (error: HttpErrorResponse) => {
         this.errors.push(error.error);
@@ -40,6 +48,8 @@ export class ListComponent implements OnInit {
 
   protected filter_by(type: string) {
     this.filters = [];
+
+    this.type = type;
 
     switch(type) {
       case 'requested':
@@ -56,7 +66,8 @@ export class ListComponent implements OnInit {
         this.filters.push(JOB_STATUSES.rejected);
         this.filters.push(JOB_STATUSES.declined);
         break;
-      case 'all':
+      default:
+        this.type = undefined;
         break;
     }
 
@@ -75,6 +86,11 @@ export class ListComponent implements OnInit {
     else {
       this.filtered_jobs = this.jobs;
     }
+  }
+
+  protected reload_page() {
+    const query = this.type !== undefined ? '?type=' + this.type : '';
+    window.location.assign(window.location.origin + '/jobs/list' + query);
   }
 
 }

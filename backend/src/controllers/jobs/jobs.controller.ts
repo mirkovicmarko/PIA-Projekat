@@ -4,6 +4,7 @@ import get from "./implementations/get";
 import request from "./implementations/request";
 import accept_offer from "./implementations/accept_offer";
 import decline_offer from "./implementations/decline_offer";
+import allocate_workers from "./implementations/allocate_workers";
 
 
 export default class AgenciesController {
@@ -14,4 +15,5 @@ export default class AgenciesController {
     decline_request = decline_request;
     accept_offer = accept_offer;
     decline_offer = decline_offer;
+    allocate_workers = allocate_workers;
 }

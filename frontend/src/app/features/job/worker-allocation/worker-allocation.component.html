@@ -2,8 +2,8 @@
 <p class="messages" *ngFor="let message of messages">{{ message }}</p>
 
 <ng-container *ngIf="content_loaded">
-    <app-objects-worker-allocation #canvasObject [object]="job['object']" [workers]="workers"></app-objects-worker-allocation>
+    <app-objects-worker-allocation #canvasObjects [object]="job['object']" [workers]="workers"></app-objects-worker-allocation>
 
-    <button id="worker-allocation-confirm-button">Potvrdi</button>
+    <button id="worker-allocation-confirm-button" (click)="allocate_workers()">Potvrdi</button>
 </ng-container>
 <app-loading *ngIf="!content_loaded && errors.length === 0"></app-loading>

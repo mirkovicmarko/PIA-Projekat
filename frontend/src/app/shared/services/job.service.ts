@@ -101,4 +101,19 @@ export class JobService {
 
     await firstValueFrom(post);
   }
+
+  async allocate_workers(job_id: string, workers_allocation: string) {
+    const body = {
+      job_id: job_id,
+      workers_allocation: workers_allocation
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/allocate_workers',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
 }

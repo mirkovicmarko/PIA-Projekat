@@ -21,6 +21,10 @@ const RoomSchema = new mongoose.Schema({
         type: String,
         enum: Object.keys(CONSTRUCTION_STATUSES),
         default: CONSTRUCTION_STATUSES.done
+    },
+    allocated_workers: {
+        type: Array<mongoose.Schema.Types.ObjectId>,
+        default: []
     }
 }, { autoCreate: false, autoIndex: false });
 
