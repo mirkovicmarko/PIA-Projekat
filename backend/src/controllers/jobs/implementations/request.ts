@@ -2,7 +2,7 @@ import { Response } from "express";
 
 import ObjectModel from '@models/Object';
 import JobModel from '@models/Object/Job';
-import { JOB_STATUSES, CONSTRUCTION_STATUSES, SESSION_DATA } from "@consts";
+import { JOB_STATUSES, CONSTRUCTION_STATUSES, SESSION_DATA, JOB_STATUSES_GROUPED } from "@consts";
 
 
 export default async function request(req, res: Response) {
@@ -53,7 +53,7 @@ export default async function request(req, res: Response) {
         return;
     }
 
-    const active_job = object.jobs.find((job) => [JOB_STATUSES.requested, JOB_STATUSES.offered, JOB_STATUSES.active].includes(job.status));
+    const active_job = object.jobs.find((job) => JOB_STATUSES_GROUPED.awaiting.includes(job.status) || JOB_STATUSES_GROUPED.undergoing.includes(job.status));
     if(active_job) {
         res.statusCode = 400;
         switch(active_job.status) {
@@ -61,7 +61,8 @@ export default async function request(req, res: Response) {
             case JOB_STATUSES.offered:
                 res.send(['Zadati objekat je već u procesu ugovaranja.']);
                 break;
-            case JOB_STATUSES.active:
+            case JOB_STATUSES.awaiting:
+            case JOB_STATUSES.undergoing:
                 res.send(['Zadati objekat je već u procesu uređivanja.']);
                 break;
         }

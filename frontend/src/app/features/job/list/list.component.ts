@@ -47,7 +47,8 @@ export class ListComponent implements OnInit {
         this.filters.push(JOB_STATUSES.offered);
         break;
       case 'active':
-        this.filters.push(JOB_STATUSES.active);
+        this.filters.push(JOB_STATUSES.awaiting);
+        this.filters.push(JOB_STATUSES.undergoing);
         break;
       case 'done':
         this.filters.push(JOB_STATUSES.paid);

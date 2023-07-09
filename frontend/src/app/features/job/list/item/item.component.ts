@@ -86,7 +86,7 @@ export class ItemComponent implements OnInit {
     this.jobService.accept_offer(this.job['_id']).then(
       () => {
         alert('Uspešno ste prihvatili ponudu.');
-        this.job['status'] = JOB_STATUSES.active;
+        this.job['status'] = JOB_STATUSES.awaiting;
       },
       (error: HttpErrorResponse) => {
         alert(error.error);

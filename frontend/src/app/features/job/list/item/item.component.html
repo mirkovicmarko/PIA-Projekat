@@ -27,7 +27,7 @@
             <button (click)="offer()">Ponudi</button>
             <button (click)="decline_request()">Odbij</button>
         </ng-container>
-        <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.active">
+        <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.awaiting">
             <button routerLink="/jobs/worker_allocation" [queryParams]="{ 'id': job['_id'] }">Započni</button>
         </ng-container>
 

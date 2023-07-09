@@ -24,7 +24,8 @@ export const JOB_STATUSES = {
     declined: 'declined',
     offered: 'offered',
     rejected: 'rejected',
-    active: 'active',
+    awaiting: 'awaiting',
+    undergoing: 'undergoing',
     canceled: 'canceled',
     paid: 'paid'
 };
@@ -34,3 +35,9 @@ export const CONSTRUCTION_STATUSES = {
     awaiting: 'awaiting',
     undergoing: 'undergoing'
 };
+
+export const JOB_STATUSES_GROUPED = {
+    done: [JOB_STATUSES.canceled, JOB_STATUSES.paid, JOB_STATUSES.rejected, JOB_STATUSES.declined],
+    awaiting: [JOB_STATUSES.requested, JOB_STATUSES.offered],
+    undergoing: [JOB_STATUSES.awaiting, JOB_STATUSES.undergoing]
+}
