@@ -27,22 +27,5 @@ export class AgencyService {
 
     return firstValueFrom(get);
   }
-
-  async request_job(object_id: string, agency_id: string, start_date: Date, end_date: Date) {
-    const post_body = {
-      object_id: object_id,
-      agency_id: agency_id,
-      start_date: start_date,
-      end_date: end_date
-    };
-
-    const post = this.http.post(
-      this.endpoint_address + '/request_job',
-      post_body,
-      { withCredentials: true }
-    );
-
-    await firstValueFrom(post);
-  }
   
 }

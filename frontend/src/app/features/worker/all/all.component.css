@@ -19,9 +19,3 @@ th, td {
 .workers_buttons {
     cursor: pointer;
 }
-
-.errors {
-    margin: 0;
-    text-align: center;
-    color: red;
-}

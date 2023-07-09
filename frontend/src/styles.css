@@ -85,3 +85,16 @@ button {
 button:hover {
     border-style: inset;
 }
+
+.errors, .messages {
+    margin: 0;
+    text-align: center;
+}
+
+.errors {
+    color: red;
+}
+
+.messages {
+    color: green;
+}

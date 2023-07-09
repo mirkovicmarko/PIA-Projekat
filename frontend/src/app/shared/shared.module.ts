@@ -7,7 +7,8 @@ import { ObjectsMakeComponent } from './ui/objects-make/objects-make.component';
 import { ObjectsShowComponent } from './ui/objects-show/objects-show.component';
 import { ListComponent } from './ui/list/list.component';
 import { ItemComponent } from './ui/list/item/item.component';
-
+import { ObjectsWorkerAllocationComponent } from './ui/objects-worker-allocation/objects-worker-allocation.component';
+import { ModalWindowComponent } from './ui/modal-window/modal-window.component';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { ItemComponent } from './ui/list/item/item.component';
     ObjectsMakeComponent,
     ObjectsShowComponent,
     ListComponent,
-    ItemComponent
+    ItemComponent,
+    ObjectsWorkerAllocationComponent,
+    ModalWindowComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,8 @@ import { ItemComponent } from './ui/list/item/item.component';
     ObjectsMakeComponent,
     ObjectsShowComponent,
     ListComponent,
-    ItemComponent
+    ItemComponent,
+    ObjectsWorkerAllocationComponent
   ]
 })
 export class SharedModule { }

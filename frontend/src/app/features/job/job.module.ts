@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { JobRoutingModule } from './job-routing.module';
 import { ListModule } from './list/list.module';
+import { WorkerAllocationModule } from './worker-allocation/worker-allocation.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { ListModule } from './list/list.module';
   imports: [
     CommonModule,
     JobRoutingModule,
-    ListModule
+    ListModule,
+    WorkerAllocationModule
   ]
 })
 export class JobModule { }

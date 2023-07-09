@@ -13,16 +13,3 @@ app-objects-make {
     width: fit-content;
     margin: 8px auto 0 auto;
 }
-
-.errors, .messages {
-    margin: 0;
-    text-align: center;
-}
-
-.errors {
-    color: red;
-}
-
-.messages {
-    color: green;
-}

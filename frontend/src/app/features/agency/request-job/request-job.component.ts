@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AgencyService } from '@shared/services/agency.service';
+import { JobService } from '@shared/services/job.service';
 
 @Component({
   selector: 'app-request-job',
@@ -21,7 +21,7 @@ export class RequestJobComponent implements OnInit {
   protected errors: string[] = [];
   protected messages: string[] = [];
 
-  constructor(private agencyService: AgencyService, private activeRoute: ActivatedRoute) { }
+  constructor(private jobService: JobService, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.agency_id = this.activeRoute.snapshot.queryParams['id'];
@@ -36,7 +36,7 @@ export class RequestJobComponent implements OnInit {
     this.messages = [];
     this.errors = [];
     
-    this.agencyService.request_job(this.choosen_object, this.agency_id, this.start_date, this.end_date).then(
+    this.jobService.request(this.choosen_object, this.agency_id, this.start_date, this.end_date).then(
       () => {
         this.messages.push('Uspešno poslat zahtev.');
       },

@@ -1,0 +1,14 @@
+app-objects-worker-allocation {
+    display: block;
+    margin: 0 auto 8px auto;
+    width: 600px;
+}
+
+app-loading {
+    margin: auto;
+}
+
+#worker-allocation-confirm-button {
+    margin: auto;
+    display: block;
+}

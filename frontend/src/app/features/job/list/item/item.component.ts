@@ -46,10 +46,10 @@ export class ItemComponent implements OnInit {
     const month_format = (month < 10 ? '0' : '') + month;
     const year_format = year;
 
-    return day + '/' + month + '/' + year;
+    return day_format + '/' + month_format + '/' + year_format;
   }
 
-  accept() {
+  offer() {
     let amount: number;
     try {
       amount = parseInt(prompt("Iznos za kompenzaciju:"));
@@ -59,7 +59,7 @@ export class ItemComponent implements OnInit {
       return;
     }
 
-    this.jobService.accept(this.job['_id'], amount).then(
+    this.jobService.offer(this.job['_id'], amount).then(
       () => {
         alert('Uspešno ste poslali ponudu.');
         this.job['status'] = JOB_STATUSES.offered;
@@ -70,8 +70,32 @@ export class ItemComponent implements OnInit {
     );
   }
 
-  decline() {
-    this.jobService.decline(this.job['_id']).then(
+  decline_request() {
+    this.jobService.decline_request(this.job['_id']).then(
+      () => {
+        alert('Uspešno ste odbili zahtev.');
+        this.job['status'] = JOB_STATUSES.declined;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  accept_offer() {
+    this.jobService.accept_offer(this.job['_id']).then(
+      () => {
+        alert('Uspešno ste prihvatili ponudu.');
+        this.job['status'] = JOB_STATUSES.active;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  decline_offer() {
+    this.jobService.decline_offer(this.job['_id']).then(
       () => {
         alert('Uspešno ste odbili ponudu.');
         this.job['status'] = JOB_STATUSES.declined;

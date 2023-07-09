@@ -8,19 +8,6 @@ table {
     margin: 8px auto 0 auto;
 }
 
-.errors, .messages {
-    margin: 0;
-    text-align: center;
-}
-
-.errors {
-    color: red;
-}
-
-.messages {
-    color: green;
-}
-
 #profile_picture_change,
 #profile_picture {
     max-width: var(--form-input-width);

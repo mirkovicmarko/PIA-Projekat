@@ -1,8 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { USER_TYPES } from '@shared/consts';
-import { AccountService } from '@shared/services/account.service';
 
 import { AgencyService } from '@shared/services/agency.service';
 

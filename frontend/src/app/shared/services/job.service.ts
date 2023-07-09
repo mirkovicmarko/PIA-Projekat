@@ -18,29 +18,84 @@ export class JobService {
     return firstValueFrom(get);
   }
 
-  async accept(id: string, amount: number) {
-    const post_body = {
-      id: id,
-      amount: amount
+  get(id: string) {
+    const params = {
+      id: id
+    };
+
+    const get = this.http.get(this.endpoint_address + '/get', { withCredentials: true, params: params });
+
+    return firstValueFrom(get);
+  }
+
+  async request(object_id: string, agency_id: string, start_date: Date, end_date: Date) {
+    const body = {
+      object_id: object_id,
+      agency_id: agency_id,
+      start_date: start_date,
+      end_date: end_date
     };
 
     const post = this.http.post(
-      this.endpoint_address + '/accept',
-      post_body,
+      this.endpoint_address + '/request',
+      body,
       { withCredentials: true }
     );
 
     await firstValueFrom(post);
   }
 
-  async decline(id: string) {
-    const post_body = {
+  async offer(id: string, amount: number) {
+    const body = {
+      id: id,
+      amount: amount
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/offer',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async decline_request(id: string) {
+    const body = {
       id: id
     };
 
     const post = this.http.post(
-      this.endpoint_address + '/decline',
-      post_body,
+      this.endpoint_address + '/decline_request',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async accept_offer(id: string) {
+    const body = {
+      id: id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/accept_offer',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async decline_offer(id: string) {
+    const body = {
+      id: id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/decline_offer',
+      body,
       { withCredentials: true }
     );
 

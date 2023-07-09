@@ -5,7 +5,7 @@ import JobModel from '@models/Object/Job';
 import { JOB_STATUSES, CONSTRUCTION_STATUSES, SESSION_DATA } from "@consts";
 
 
-export default async function request_job(req, res: Response) {
+export default async function request(req, res: Response) {
     const user_id = req.session[SESSION_DATA.user_id];
 
     const object_id = req.body['object_id'];

@@ -7,9 +7,17 @@ const jobs_controller = new JobsController();
 
 jobs_router.route('/get_all')
     .get((req: express.Request, res: express.Response) => jobs_controller.get_all(req, res));
-jobs_router.route('/accept')
-    .post((req: express.Request, res: express.Response) => jobs_controller.accept(req, res));
-jobs_router.route('/decline')
-    .post((req: express.Request, res: express.Response) => jobs_controller.decline(req, res));
+jobs_router.route('/get')
+    .get((req: express.Request, res: express.Response) => jobs_controller.get_all(req, res));
+jobs_router.route('/request')
+    .post((req: express.Request, res: express.Response) => jobs_controller.request(req, res));
+jobs_router.route('/offer')
+    .post((req: express.Request, res: express.Response) => jobs_controller.offer(req, res));
+jobs_router.route('/decline_request')
+    .post((req: express.Request, res: express.Response) => jobs_controller.decline_request(req, res));
+jobs_router.route('/accept_offer')
+    .post((req: express.Request, res: express.Response) => jobs_controller.accept_offer(req, res));
+jobs_router.route('/decline_offer')
+    .post((req: express.Request, res: express.Response) => jobs_controller.decline_offer(req, res));
 
 export default jobs_router;

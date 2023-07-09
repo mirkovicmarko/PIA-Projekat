@@ -4,7 +4,7 @@ import ObjectModel from '@models/Object';
 import { JOB_STATUSES, CONSTRUCTION_STATUSES, SESSION_DATA } from '@consts';
 
 
-export default function decline(req, res: Response) {
+export default function decline_request(req, res: Response) {
     const user_id = req.session[SESSION_DATA.user_id];
 
     const id = req.body['id'];

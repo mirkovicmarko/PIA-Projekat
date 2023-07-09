@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemComponent } from './item.component';
+import { WorkerAllocationComponent } from './worker-allocation.component';
 import { SharedModule } from '@shared/shared.module';
-import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
   declarations: [
-    ItemComponent
+    WorkerAllocationComponent
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    RouterModule
-  ],
-  exports: [
-    ItemComponent
+    SharedModule
   ]
 })
-export class ItemModule { }
+export class WorkerAllocationModule { }

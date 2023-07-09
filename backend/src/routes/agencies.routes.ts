@@ -9,7 +9,5 @@ agencies_router.route('/get_all')
     .get((req: express.Request, res: express.Response) => agencies_controller.get_all(req, res));
 agencies_router.route('/get')
     .get((req: express.Request, res: express.Response) => agencies_controller.get(req, res));
-agencies_router.route('/request_job')
-    .post((req: express.Request, res: express.Response) => agencies_controller.request_job(req, res));
 
 export default agencies_router;

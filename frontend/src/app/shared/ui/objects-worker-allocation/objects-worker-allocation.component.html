@@ -1,0 +1,30 @@
+<app-objects-show id="canvas-objects" #canvasObjects [object]="object"></app-objects-show>
+
+<div id="objects-panel">
+    <div class="object-panel" *ngFor="let room of object.rooms">
+        <p>{{ '(' + round(room.position.x) + ',' + round(room.position.y) + ')' }}</p>
+
+        <div *ngFor="let worker of selected_workers[room._id]">
+            <span>{{ worker.first_name }}</span>
+            <button (click)="remove_worker(room, worker)">Ukloni</button>
+        </div>
+
+        <button class="objects-panel-select-workers-button" *ngIf="selected_workers[room._id].length === 0" (click)="select_workers(room)">Dodaj</button>
+        <hr />
+    </div>
+</div>
+
+<app-modal-window *ngIf="show_workers_modal">
+    <table>
+        <tr *ngFor="let worker of workers">
+            <td>
+                {{ worker.first_name }}
+                {{ worker.last_name }}
+            </td>
+            <td>
+                <button (click)="add_worker(worker)">Dodaj</button>
+            </td>
+        </tr>
+    </table>
+    <button (click)="back()">Nazad</button>
+</app-modal-window>

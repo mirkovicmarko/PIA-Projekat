@@ -8,12 +8,14 @@
             <p class="job-client-email">{{ job['client_info']['email'] }}</p>
             <p class="job-client-phone-number">{{ job['client_info']['phone_number'] }}</p>
         </ng-container>
+
         <ng-container *ngIf="user_type === USER_TYPES.client">
             <h3 class="job-agency-name">{{ job['agency_info']['name'] }}</h3>
             <p class="job-agency-email">{{ job['agency_info']['address'] }}</p>
             <p class="job-agency-email">{{ job['agency_info']['email'] }}</p>
             <p class="job-agency-phone-number">{{ job['agency_info']['phone_number'] }}</p>
         </ng-container>
+
         <p class="job-date">
             {{ format_date(job['start_date']) }}
             -
@@ -22,8 +24,17 @@
     </ng-container>
     <ng-container ngProjectAs="controls">
         <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.requested">
-            <button (click)="accept()">Prihvati</button>
-            <button (click)="decline()">Odbij</button>
+            <button (click)="offer()">Ponudi</button>
+            <button (click)="decline_request()">Odbij</button>
+        </ng-container>
+        <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.active">
+            <button routerLink="/jobs/worker_allocation" [queryParams]="{ 'id': job['_id'] }">Započni</button>
+        </ng-container>
+
+        <ng-container *ngIf="user_type === USER_TYPES.client && job['status'] === JOB_STATUSES.offered">
+            <button (click)="accept_offer()">Prihvati</button>
+            <button (click)="decline_offer()">Odbij</button>
+            <span> <strong>Ponuđeno:</strong> {{ job['price'] }} </span>
         </ng-container>
     </ng-container>
     <ng-container ngProjectAs="display">
