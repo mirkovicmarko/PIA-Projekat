@@ -38,6 +38,13 @@ export class ItemComponent implements OnInit {
     this.user_type = this.accountService.user_type;
   }
 
+  protected background_color() {
+    if(this.user_type !== USER_TYPES.client) return 'transparent';
+    else if(this.job['status'] === JOB_STATUSES.rejected) return 'rgba(255, 0, 0, 0.2)';
+    else if(this.job['status'] === JOB_STATUSES.offered) return 'rgba(0, 255, 0, 0.2)';
+    else return 'transparent';
+  }
+
   protected format_date(date: string) {
     const date_object = new Date(date);
 

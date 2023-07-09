@@ -1,4 +1,4 @@
-<app-list-item>
+<app-list-item [style]="{ 'background-color': background_color() }">
     <ng-container ngProjectAs="details">
         <ng-container *ngIf="user_type === USER_TYPES.agency">
             <h3 class="job-client-name">
