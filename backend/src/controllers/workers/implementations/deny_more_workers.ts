@@ -33,7 +33,7 @@ export default function deny_more_workers(req, res: Response) {
         (user) => {
             if(!user) {
                 res.statusCode = 400;
-                res.send(['Zadata radionica ne postoji.']);
+                res.send(['Zadata agencija ne postoji.']);
                 return;
             }
 

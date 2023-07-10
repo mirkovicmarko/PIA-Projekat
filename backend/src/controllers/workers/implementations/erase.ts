@@ -29,7 +29,7 @@ export default function erase(req, res: Response) {
         (user) => {
             if(!user) {
                 res.statusCode = 400;
-                res.send(['Zadata radionica ne postoji.']);
+                res.send(['Zadata agencija ne postoji.']);
                 return;
             }
 
