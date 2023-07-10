@@ -28,7 +28,6 @@ export class ObjectsChangeConstructionStatusComponent implements OnInit {
 
   click_event(event) {
     const room = this.get_room_under(event.offsetX, event.offsetY);
-    console.log(room)
 
     if(!room) return;
 

@@ -145,4 +145,19 @@ export class JobService {
 
     await firstValueFrom(post);
   }
+
+  async cancellation_request(id: string, message: string) {
+    const body = {
+      id: id,
+      message: message
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/cancellation_request',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
 }

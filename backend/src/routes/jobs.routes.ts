@@ -25,5 +25,7 @@ jobs_router.route('/update_object_status')
     .post((req: express.Request, res: express.Response) => jobs_controller.update_object_status(req, res));
 jobs_router.route('/pay')
     .post((req: express.Request, res: express.Response) => jobs_controller.pay(req, res));
+jobs_router.route('/cancellation_request')
+    .post((req: express.Request, res: express.Response) => jobs_controller.cancellation_request(req, res));
 
 export default jobs_router;

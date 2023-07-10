@@ -27,9 +27,11 @@
             <button (click)="offer()">Ponudi</button>
             <button (click)="decline_request()">Odbij</button>
         </ng-container>
+
         <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.awaiting">
             <button routerLink="/jobs/worker_allocation" [queryParams]="{ 'id': job['_id'] }">Započni</button>
         </ng-container>
+
         <ng-container *ngIf="user_type === USER_TYPES.agency && job['status'] === JOB_STATUSES.undergoing">
             <button (click)="status_change_modal_open = true">Ažuriraj</button>
             <app-modal-window *ngIf="status_change_modal_open">
@@ -38,11 +40,22 @@
             </app-modal-window>
         </ng-container>
 
+
         <ng-container *ngIf="user_type === USER_TYPES.client && job['status'] === JOB_STATUSES.offered">
             <button (click)="accept_offer()">Prihvati</button>
             <button (click)="decline_offer()">Odbij</button>
             <span> <strong>Ponuđeno:</strong> {{ job['price'] }} </span>
         </ng-container>
+
+        <ng-container *ngIf="user_type === USER_TYPES.client && job_active && !job['cancellation']">
+            <button (click)="cancellation_request_modal_open = true">Otkaži</button>
+            <app-modal-window *ngIf="cancellation_request_modal_open">
+                <p>Molimo dajte objašnjenje:</p>
+                <textarea name="cancellation_request_message" id="cancellation_request_message" cols="30" rows="10" [(ngModel)]="cancellation_request_message"></textarea>
+                <button (click)="cancellation_request()">Potvrdi</button>
+            </app-modal-window>
+        </ng-container>
+
         <ng-container *ngIf="user_type === USER_TYPES.client && job['status'] === JOB_STATUSES.finished">
             <button (click)="pay()">Plati</button>
         </ng-container>

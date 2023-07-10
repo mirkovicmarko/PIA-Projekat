@@ -26,6 +26,9 @@ export class ItemComponent implements OnInit {
 
   protected status_change_modal_open: boolean = false;
 
+  protected cancellation_request_modal_open: boolean = false;
+  protected cancellation_request_message: string = "";
+
   public get USER_TYPES() {
     return USER_TYPES; 
   }
@@ -142,6 +145,18 @@ export class ItemComponent implements OnInit {
     this.jobService.pay(this.job['_id']).then(
       () => {
         alert('Uspešno ste platili.');
+        this.signal_update();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  cancellation_request() {
+    this.jobService.cancellation_request(this.job['_id'], this.cancellation_request_message).then(
+      () => {
+        alert('Uspešno ste poslali zahtev za otkazivanjem.');
         this.signal_update();
       },
       (error: HttpErrorResponse) => {

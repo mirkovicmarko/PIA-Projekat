@@ -7,6 +7,7 @@ import decline_offer from "./implementations/decline_offer";
 import allocate_workers from "./implementations/allocate_workers";
 import update_object_status from "./implementations/update_object_status";
 import pay from "./implementations/pay";
+import cancellation_request from "./implementations/cancellation_request";
 
 
 export default class AgenciesController {
@@ -20,4 +21,5 @@ export default class AgenciesController {
     allocate_workers = allocate_workers;
     update_object_status = update_object_status;
     pay = pay;
+    cancellation_request = cancellation_request;
 }

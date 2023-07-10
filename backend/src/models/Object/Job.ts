@@ -32,6 +32,16 @@ const JobSchema = new mongoose.Schema({
         type: Number,
         required: false,
         min: 0
+    },
+    cancellation: {
+        type: {
+            message: {
+                type: String,
+                required: true
+            }
+        },
+        required: false,
+        default: null
     }
 }, { autoCreate: false, autoIndex: false });
 
