@@ -4,6 +4,7 @@ import ObjectModel from '@models/Object';
 import { SESSION_DATA, USER_TYPES } from "@consts";
 import agency_aggregation from "./get/agency_aggregation";
 import client_aggregation from "./get/client_aggregation";
+import admin_aggregation from "./get/admin_aggregation";
 
 
 export default function get(req, res: Response) {
@@ -26,6 +27,9 @@ export default function get(req, res: Response) {
             break;
         case USER_TYPES.client:
             aggregation = client_aggregation(user_id, job_id);
+            break;
+        case USER_TYPES.admin:
+            aggregation = admin_aggregation();
             break;
         default:
             res.statusCode = 400;

@@ -1,5 +1,6 @@
 import { JOB_STATUSES } from "@consts";
 import mongoose from "mongoose";
+import CancellationModel from './Job/Cancellation';
 
 
 const JobSchema = new mongoose.Schema({
@@ -34,12 +35,7 @@ const JobSchema = new mongoose.Schema({
         min: 0
     },
     cancellation: {
-        type: {
-            message: {
-                type: String,
-                required: true
-            }
-        },
+        type: CancellationModel.schema,
         required: false,
         default: null
     }

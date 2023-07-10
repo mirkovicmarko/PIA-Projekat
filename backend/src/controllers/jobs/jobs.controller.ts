@@ -8,6 +8,8 @@ import allocate_workers from "./implementations/allocate_workers";
 import update_object_status from "./implementations/update_object_status";
 import pay from "./implementations/pay";
 import cancellation_request from "./implementations/cancellation_request";
+import allow_cancellation from "./implementations/allow_cancellation";
+import deny_cancellation from "./implementations/deny_cancellation";
 
 
 export default class AgenciesController {
@@ -22,4 +24,6 @@ export default class AgenciesController {
     update_object_status = update_object_status;
     pay = pay;
     cancellation_request = cancellation_request;
+    allow_cancellation = allow_cancellation;
+    deny_cancellation = deny_cancellation;
 }

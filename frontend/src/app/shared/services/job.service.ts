@@ -160,4 +160,32 @@ export class JobService {
 
     await firstValueFrom(post);
   }
+
+  async allow_cancellation(job_id: string) {
+    const body = {
+      job_id: job_id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/allow_cancellation',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async deny_cancellation(job_id: string) {
+    const body = {
+      job_id: job_id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/deny_cancellation',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
 }

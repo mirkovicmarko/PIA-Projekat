@@ -17,7 +17,7 @@ export default function decline_request(req, res: Response) {
 
     if(!id) {
         res.statusCode = 400;
-        res.send('Unesite sve podatke.');
+        res.send(['Unesite sve podatke.']);
         return;
     }
 

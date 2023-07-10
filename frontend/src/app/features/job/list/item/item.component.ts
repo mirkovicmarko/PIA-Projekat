@@ -37,6 +37,8 @@ export class ItemComponent implements OnInit {
     rating: 5
   };
 
+  protected cancellation_modal_open: boolean = false;
+
   public get USER_TYPES() {
     return USER_TYPES; 
   }
@@ -177,6 +179,30 @@ export class ItemComponent implements OnInit {
     this.agencyService.rate(this.job['agency_info']['_id'], this.rating.title, this.rating.text, this.rating.rating).then(
       () => {
         alert('Uspešno ste ocenili agenciju.');
+        this.signal_update();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  allow_cancellation() {
+    this.jobService.allow_cancellation(this.job['_id']).then(
+      () => {
+        alert('Uspešno ste prihvatili zahtev za otkazivanjem posla.');
+        this.signal_update();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  deny_cancellation() {
+    this.jobService.deny_cancellation(this.job['_id']).then(
+      () => {
+        alert('Uspešno ste odbili zahtev za otkazivanjem posla.');
         this.signal_update();
       },
       (error: HttpErrorResponse) => {

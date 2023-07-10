@@ -1,6 +1,8 @@
 <app-list-item [style]="{ 'background-color': background_color() }">
     <ng-container ngProjectAs="details">
-        <ng-container *ngIf="user_type === USER_TYPES.agency">
+        <ng-container *ngIf="user_type === USER_TYPES.agency || user_type === USER_TYPES.admin">
+            <p *ngIf="user_type === USER_TYPES.agency || user_type === USER_TYPES.admin" style="text-decoration: underline;">Klijent:</p>
+
             <h3 class="job-client-name">
                 {{ job['client_info']['first_name'] }}
                 {{ job['client_info']['last_name'] }}
@@ -9,7 +11,9 @@
             <p class="job-client-phone-number">{{ job['client_info']['phone_number'] }}</p>
         </ng-container>
 
-        <ng-container *ngIf="user_type === USER_TYPES.client">
+        <ng-container *ngIf="user_type === USER_TYPES.client || user_type === USER_TYPES.admin">
+            <p *ngIf="user_type === USER_TYPES.agency || user_type === USER_TYPES.admin" style="text-decoration: underline;">Agencija:</p>
+
             <h3 class="job-agency-name">{{ job['agency_info']['name'] }}</h3>
             <p class="job-agency-email">{{ job['agency_info']['address'] }}</p>
             <p class="job-agency-email">{{ job['agency_info']['email'] }}</p>
@@ -85,6 +89,16 @@
                 </table>
                 
                 <button (click)="rate()">Potvrdi</button>
+            </app-modal-window>
+        </ng-container>
+
+        <ng-container *ngIf="user_type === USER_TYPES.admin && job_active && job['cancellation']">
+            <button (click)="cancellation_modal_open = true">Pogledaj zahtev za otkazivanjem</button>
+
+            <app-modal-window *ngIf="cancellation_modal_open">
+                <p>{{ job['cancellation']['message'] }}</p>
+                <button (click)="allow_cancellation()">Odobri</button>
+                <button (click)="deny_cancellation()">Odbij</button>
             </app-modal-window>
         </ng-container>
     </ng-container>

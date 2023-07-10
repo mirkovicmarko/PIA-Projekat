@@ -27,5 +27,9 @@ jobs_router.route('/pay')
     .post((req: express.Request, res: express.Response) => jobs_controller.pay(req, res));
 jobs_router.route('/cancellation_request')
     .post((req: express.Request, res: express.Response) => jobs_controller.cancellation_request(req, res));
+jobs_router.route('/allow_cancellation')
+    .post((req: express.Request, res: express.Response) => jobs_controller.allow_cancellation(req, res));
+jobs_router.route('/deny_cancellation')
+    .post((req: express.Request, res: express.Response) => jobs_controller.deny_cancellation(req, res));
 
 export default jobs_router;
