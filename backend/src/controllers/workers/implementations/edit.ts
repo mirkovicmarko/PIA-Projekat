@@ -6,8 +6,11 @@ import { SESSION_DATA, USER_TYPES } from '@consts';
 
 
 export default function edit(req, res: Response) {
-    const worker = req.body['worker'];
     const user_id = req.session[SESSION_DATA.user_id];
+    const user_type = req.session[SESSION_DATA.user_type];
+
+    const worker = req.body['worker'];
+    const requested_agency_id = req.body['agency_id'];
 
     if(user_id === undefined) {
         res.statusCode = 401;
@@ -21,6 +24,14 @@ export default function edit(req, res: Response) {
         return;
     }
 
+    if(requested_agency_id !== undefined && user_type !== USER_TYPES.admin) {
+        res.statusCode = 403;
+        res.send();
+        return;
+    }
+
+    const id = requested_agency_id !== undefined ? requested_agency_id : user_id;
+
     const update_worker = new WorkerModel(worker);
 
     const fields_validation = update_worker.validateSync();
@@ -30,7 +41,7 @@ export default function edit(req, res: Response) {
         return;
     }
 
-    UserModel.findOneAndUpdate({ _id: user_id, type: USER_TYPES.agency, "agency.workers._id": update_worker._id }, { "agency.workers.$": update_worker }).then(
+    UserModel.findOneAndUpdate({ _id: id, type: USER_TYPES.agency, "agency.workers._id": update_worker._id }, { "agency.workers.$": update_worker }).then(
         (updated_worker) => {
             if(!updated_worker) {
                 res.statusCode = 400;

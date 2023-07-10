@@ -19,3 +19,8 @@ th, td {
 .workers_buttons {
     cursor: pointer;
 }
+
+#new-worker-button {
+    display: block;
+    margin: auto;
+}

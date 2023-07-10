@@ -15,39 +15,51 @@ export class WorkerService {
 
   constructor(private http: HttpClient) { }
 
-  async insert(worker: Worker) {
-    const post_body = {
+  async insert(worker: Worker, agency_id: string = undefined) {
+    const body = {
       worker: worker
     };
+
+    if(agency_id !== undefined) {
+      body['agency_id'] = agency_id;
+    }
 
     const post = this.http.post(
       this.endpoint_address + '/insert',
-      post_body,
+      body,
       { withCredentials: true }
     );
 
     await firstValueFrom(post);
   }
 
-  async edit(worker: Worker) {
-    const post_body = {
+  async edit(worker: Worker, agency_id: string = undefined) {
+    const body = {
       worker: worker
     };
 
+    if(agency_id !== undefined) {
+      body['agency_id'] = agency_id;
+    }
+
     const post = this.http.post(
       this.endpoint_address + '/edit',
-      post_body,
+      body,
       { withCredentials: true }
     );
 
     await firstValueFrom(post);
   }
 
-  get_all(allocated: boolean = undefined) {
+  get_all(allocated: boolean = undefined, agency_id: string = undefined) {
     const params = {};
 
     if(allocated !== undefined) {
       params['allocated'] = allocated;
+    }
+
+    if(agency_id !== undefined) {
+      params['agency_id'] = agency_id;
     }
 
     const get = this.http.get(this.endpoint_address + '/get_all', { withCredentials: true, params: params });
@@ -55,23 +67,32 @@ export class WorkerService {
     return firstValueFrom(get);
   }
 
-  get(id: string) {
+  get(id: string, agency_id: string = undefined) {
     const params = {
       'id': id
     };
+
+    if(agency_id !== undefined) {
+      params['agency_id'] = agency_id;
+    }
+
     const get = this.http.get(this.endpoint_address + '/get', { params: params, withCredentials: true });
 
     return firstValueFrom(get);
   }
 
-  async erase(id: string) {
-    const post_body = {
+  async erase(id: string, agency_id: string = undefined) {
+    const body = {
       id: id
     };
 
+    if(agency_id !== undefined) {
+      body['agency_id'] = agency_id;
+    }
+    
     const post = this.http.post(
       this.endpoint_address + '/erase',
-      post_body,
+      body,
       { withCredentials: true }
     );
 

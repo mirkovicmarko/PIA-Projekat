@@ -20,12 +20,16 @@ export class UpsertComponent implements OnInit {
   public messages: string[] = [];
   public errors: string[] = [];
 
+  private agency_id: string;
+
   constructor(private workerService: WorkerService, private activeRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.queryParams['id'];
+    this.agency_id = this.activeRoute.snapshot.queryParams['agency_id'];
+
     if(this.id !== undefined) {
-      this.workerService.get(this.id).then(
+      this.workerService.get(this.id, this.agency_id).then(
         (worker: Worker) => {
           this.worker = worker;
         },
@@ -41,12 +45,12 @@ export class UpsertComponent implements OnInit {
     this.messages = [];
 
     if(this.id === undefined) {
-      await this.workerService.insert(this.worker).then(
+      await this.workerService.insert(this.worker, this.agency_id).then(
         () => this.messages.push('Radnik je uspešno ubačen.'),
         (error: HttpErrorResponse) => this.errors = error.error
       );
     } else {
-      await this.workerService.edit(this.worker).then(
+      await this.workerService.edit(this.worker, this.agency_id).then(
         () => this.messages.push('Radnik je uspešno ažuriran.'),
         (error: HttpErrorResponse) => this.errors = error.error
       );

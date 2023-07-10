@@ -13,10 +13,12 @@
         <td>{{ worker.email }}</td>
         <td>{{ worker.phone_number }}</td>
         <td>{{ worker.specialty }}</td>
-        <td class="workers_buttons" routerLink="/workers/edit" [queryParams]="{ 'id': worker._id }">Izmeni</td>
+        <td class="workers_buttons" routerLink="/workers/edit" [queryParams]="{ 'id': worker._id, 'agency_id': agency_id }">Izmeni</td>
         <td class="workers_buttons" (click)="erase(worker._id)">Izbriši</td>
     </tr>
 </table>
+
+<button id="new-worker-button" routerLink="/workers/insert" [queryParams]="{ 'agency_id': agency_id }">Novi</button>
 
 <div *ngIf="errors.length > 0">
     <p *ngFor="let error of errors">{{ error }}</p>

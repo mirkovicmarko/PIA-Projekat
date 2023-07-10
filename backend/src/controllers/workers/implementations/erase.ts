@@ -5,8 +5,11 @@ import { SESSION_DATA, USER_TYPES } from '@consts';
 
 
 export default function erase(req, res: Response) {
-    const id = req.body['id'];
     const user_id = req.session[SESSION_DATA.user_id];
+    const user_type = req.session[SESSION_DATA.user_type];
+
+    const id = req.body['id'];
+    const requested_agency_id = req.body['agency_id'];
 
     if(user_id === undefined) {
         res.statusCode = 401;
@@ -14,7 +17,15 @@ export default function erase(req, res: Response) {
         return;
     }
 
-    UserModel.findOne({ _id: user_id, type: USER_TYPES.agency }).then(
+    if(requested_agency_id !== undefined && user_type !== USER_TYPES.admin) {
+        res.statusCode = 403;
+        res.send();
+        return;
+    }
+
+    const agency_id = requested_agency_id !== undefined ? requested_agency_id : id;
+
+    UserModel.findOne({ _id: agency_id, type: USER_TYPES.agency }).then(
         (user) => {
             if(!user) {
                 res.statusCode = 400;

@@ -17,16 +17,14 @@
         <ng-container *ngIf="user.approved">
             <button routerLink="/account/edit" [queryParams]="{ 'id': user._id }">Ažuriraj</button>
             <button (click)="remove()">Izbriši</button>
+
+            <button *ngIf="user.type === USER_TYPES.agency" routerLink="/workers/all" [queryParams]="{ 'id': user._id }">Radnici</button>
         </ng-container>
         
         <ng-container *ngIf="!user.approved && !user.banned">
             <button (click)="allow()">Dozvoli</button>
             <button (click)="ban()">Zabrani</button>
         </ng-container>
-        <!--
-        <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
-        <button *ngIf="user_type === USER_TYPES.client" routerLink="/agencies/request_job" [queryParams]="{ 'id': agency['_id'] }">Saradnja</button>
-        -->
     </ng-container>
     <ng-container ngProjectAs="display">
         <img class="user-profile-picture" [src]="user['profile_picture']" />
