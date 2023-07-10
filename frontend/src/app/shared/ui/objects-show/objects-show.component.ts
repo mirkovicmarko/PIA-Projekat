@@ -61,7 +61,7 @@ export class ObjectsShowComponent implements AfterViewInit {
 
     this.canvas_context.beginPath();
 
-    if(this.show_status && this.object.status !== CONSTRUCTION_STATUSES.done) {
+    if(this.show_status) {
       this.canvas_context.fillStyle = this.get_room_color(room);
       this.canvas_context.globalAlpha = 0.3;
 

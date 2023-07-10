@@ -21,5 +21,9 @@ jobs_router.route('/decline_offer')
     .post((req: express.Request, res: express.Response) => jobs_controller.decline_offer(req, res));
 jobs_router.route('/allocate_workers')
     .post((req: express.Request, res: express.Response) => jobs_controller.allocate_workers(req, res));
+jobs_router.route('/update_object_status')
+    .post((req: express.Request, res: express.Response) => jobs_controller.update_object_status(req, res));
+jobs_router.route('/pay')
+    .post((req: express.Request, res: express.Response) => jobs_controller.pay(req, res));
 
 export default jobs_router;

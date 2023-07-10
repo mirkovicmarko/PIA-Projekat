@@ -1,9 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JOB_STATUSES, JOB_STATUSES_GROUPED, USER_TYPES } from '@shared/consts';
 import { AccountService } from '@shared/services/account.service';
 import { JobService } from '@shared/services/job.service';
+import { ObjectsChangeConstructionStatusComponent } from '@shared/ui/objects-change-construction-status/objects-change-construction-status.component';
 
 
 @Component({
@@ -18,7 +19,12 @@ export class ItemComponent implements OnInit {
   @Input()
   public job;
 
+  @ViewChild('canvasObjects', {static: false})
+  private canvas_element: ObjectsChangeConstructionStatusComponent;
+
   user_type: string;
+
+  protected status_change_modal_open: boolean = false;
 
   public get USER_TYPES() {
     return USER_TYPES; 
@@ -112,6 +118,30 @@ export class ItemComponent implements OnInit {
     this.jobService.decline_offer(this.job['_id']).then(
       () => {
         alert('Uspešno ste odbili ponudu.');
+        this.signal_update();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  update_status() {
+    this.jobService.update_object_status(this.job['object']['_id'], this.canvas_element.get_updated_rooms()).then(
+      () => {
+        alert('Uspešno ste promenili status.');
+        this.signal_update();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  pay() {
+    this.jobService.pay(this.job['_id']).then(
+      () => {
+        alert('Uspešno ste platili.');
         this.signal_update();
       },
       (error: HttpErrorResponse) => {

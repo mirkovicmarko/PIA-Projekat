@@ -116,4 +116,33 @@ export class JobService {
 
     await firstValueFrom(post);
   }
+
+  async update_object_status(object_id: string, rooms_ids: string[]) {
+    const body = {
+      object_id: object_id,
+      rooms_ids: rooms_ids
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/update_object_status',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async pay(id: string) {
+    const body = {
+      id: id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/pay',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
 }
