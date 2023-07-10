@@ -19,6 +19,11 @@
             <button (click)="remove()">Izbriši</button>
 
             <button *ngIf="user.type === USER_TYPES.agency" routerLink="/workers/all" [queryParams]="{ 'id': user._id }">Radnici</button>
+            <div *ngIf="user.type === USER_TYPES.agency && user.agency.requested_workers > 0">
+                <span>Zahtevanih radnika: {{ user.agency.requested_workers }}</span>
+                <button (click)="allow_more_workers()">Odobri</button>
+                <button (click)="deny_more_workers()">Odbij</button>
+            </div>
         </ng-container>
         
         <ng-container *ngIf="!user.approved && !user.banned">

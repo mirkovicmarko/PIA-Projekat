@@ -113,4 +113,32 @@ export class WorkerService {
     await firstValueFrom(post);
   }
 
+  async allow_more_workers(agency_id: string) {
+    const body = {
+      agency_id: agency_id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/allow_more_workers',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
+  async deny_more_workers(agency_id: string) {
+    const body = {
+      agency_id: agency_id
+    };
+
+    const post = this.http.post(
+      this.endpoint_address + '/deny_more_workers',
+      body,
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post);
+  }
+
 }

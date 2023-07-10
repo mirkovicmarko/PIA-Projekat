@@ -1,3 +1,5 @@
+import allow_more_workers from "./implementations/allow_more_workers";
+import deny_more_workers from "./implementations/deny_more_workers";
 import edit_impl from "./implementations/edit";
 import erase_impl from "./implementations/erase";
 import get_impl from "./implementations/get";
@@ -13,4 +15,6 @@ export default class WorkersController {
     edit = edit_impl;
     erase = erase_impl;
     more_workers = more_workers_impl;
+    allow_more_workers = allow_more_workers;
+    deny_more_workers = deny_more_workers;
 }

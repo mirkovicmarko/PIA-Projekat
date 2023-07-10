@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { USER_TYPES } from '@shared/consts';
 import User from '@shared/models/user';
 import { AccountService } from '@shared/services/account.service';
+import { WorkerService } from '@shared/services/worker.service';
 
 @Component({
   selector: 'app-users-list-item',
@@ -17,7 +18,7 @@ export class ItemComponent implements OnInit {
     return USER_TYPES;
   }
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private workerService: WorkerService) { }
 
   ngOnInit(): void {
   }
@@ -44,6 +45,24 @@ export class ItemComponent implements OnInit {
     this.accountService.allow(this.user._id).then(
       () => {
         alert('Uspešno dozvoljen pristup korisniku.');
+        window.location.reload();
+      }
+    );
+  }
+
+  allow_more_workers() {
+    this.workerService.allow_more_workers(this.user._id).then(
+      () => {
+        alert('Uspešno dozvoljen veći broj radnih mesta.');
+        window.location.reload();
+      }
+    );
+  }
+
+  deny_more_workers() {
+    this.workerService.deny_more_workers(this.user._id).then(
+      () => {
+        alert('Uspešno zabranjen veći broj radnih mesta.');
         window.location.reload();
       }
     );

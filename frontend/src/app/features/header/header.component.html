@@ -30,10 +30,11 @@
             </div>
         </div>
 
-        <div class="header-menu-item" *ngIf="user_type != USER_TYPES.none">
+        <div class="header-menu-item" *ngIf="user_type !== USER_TYPES.none">
             <div class="header-menu-item-title">Poslovi</div>
             <div class="header-menu-item-submenu">
-                <a routerLink="/jobs/list" *ngIf="user_type != USER_TYPES.admin">Moji</a>
+                <a routerLink="/jobs/list" *ngIf="user_type !== USER_TYPES.admin">Moji</a>
+                <a routerLink="/jobs/list" *ngIf="user_type === USER_TYPES.admin">Svi</a>
             </div>
         </div>
 

@@ -17,6 +17,10 @@ workers_router.route('/get')
     .get((req: express.Request, res: express.Response) => workers_controller.get(req, res));
 workers_router.route('/more_workers')
     .post((req: express.Request, res: express.Response) => workers_controller.more_workers(req, res));
+workers_router.route('/allow_more_workers')
+    .post((req: express.Request, res: express.Response) => workers_controller.allow_more_workers(req, res));
+workers_router.route('/deny_more_workers')
+    .post((req: express.Request, res: express.Response) => workers_controller.deny_more_workers(req, res));
 
     
 export default workers_router;
