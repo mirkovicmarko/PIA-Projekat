@@ -130,4 +130,4 @@
 
 <p class="messages" *ngFor="let message of messages">{{ message }}</p>
 
-<button id="button_register" (click)="register()">Registruj se</button>
+<button id="button_register" (click)="register()">{{ admin ? 'Potvrdi' : 'Registruj se' }}</button>

@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="header-menu-item">
+        <div class="header-menu-item" *ngIf="user_type != USER_TYPES.admin">
             <div class="header-menu-item-title">Agencije</div>
             <div class="header-menu-item-submenu">
                 <a routerLink="/agencies/list">Sve</a>
@@ -34,7 +34,15 @@
         <div class="header-menu-item" *ngIf="user_type != USER_TYPES.none">
             <div class="header-menu-item-title">Poslovi</div>
             <div class="header-menu-item-submenu">
-                <a routerLink="/jobs/list">Moji</a>
+                <a routerLink="/jobs/list" *ngIf="user_type != USER_TYPES.admin">Moji</a>
+            </div>
+        </div>
+
+        <div class="header-menu-item" *ngIf="user_type == USER_TYPES.admin">
+            <div class="header-menu-item-title">Korisnici</div>
+            <div class="header-menu-item-submenu">
+                <a routerLink="/account/list">Svi</a>
+                <a routerLink="/account/new">Novi</a>
             </div>
         </div>
     </div>

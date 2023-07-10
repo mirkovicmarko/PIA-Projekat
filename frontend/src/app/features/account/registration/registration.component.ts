@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { USER_TYPES } from '@shared/consts';
 import User from '@shared/models/user';
@@ -11,7 +12,7 @@ import { UtilService } from '@shared/services/util.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
   public get USER_TYPES() {
     return USER_TYPES; 
@@ -23,7 +24,13 @@ export class RegistrationComponent {
   errors: string[] = [];
   messages: string[] = [];
 
-  constructor(private accountService: AccountService, private utilService: UtilService) { }
+  admin: boolean = false;
+
+  constructor(private accountService: AccountService, private utilService: UtilService, private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.admin = this.accountService.user_type === USER_TYPES.admin;
+  }
 
   set_profile_picture(event) {
     this.utilService.image_file_to_base64(event.target.files[0]).then(
@@ -54,7 +61,14 @@ export class RegistrationComponent {
     }
 
     await this.accountService.register(this.user).then(
-      () => this.messages.push('Zahtev za registracijom je uspešno poslat.'),
+      () => {
+        if(this.admin) {
+          this.messages.push('Novi korisnik je uspešno kreiran.');
+        }
+        else {
+          this.messages.push('Zahtev za registracijom je uspešno poslat.');
+        }
+      },
       (error: HttpErrorResponse) => this.errors = error.error
     );
   }

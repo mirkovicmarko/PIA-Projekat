@@ -6,7 +6,7 @@
             </td>
             <td>
                 <input type="text" readonly name="user_type" id="user_type"
-                    [value]="user.type == USER_TYPES.client ? 'Klijent' : (user.type == USER_TYPES.agency ? 'Agencija' : '???')" />
+                    [value]="user.type == USER_TYPES.client ? 'Klijent' : (user.type == USER_TYPES.agency ? 'Agencija' : (user.type == USER_TYPES.admin ? 'Administrator' : '???'))" />
             </td>
         </tr>
         <tr style="border-top: 8px solid transparent">

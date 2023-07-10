@@ -1,0 +1,34 @@
+
+<app-list-item [style]="{ 'background-color': !user.approved && user.banned ? 'rgba(255, 0, 0, 0.2)' : 'transparent' }">
+    <ng-container ngProjectAs="details">
+        <ng-container *ngIf="user.type === USER_TYPES.agency">
+            <h3 class="agency-name">{{ user.agency.name }}</h3>
+        </ng-container>
+
+        <ng-container *ngIf="user.type === USER_TYPES.client">
+            <h3 class="client-name">{{ user.client.first_name }} {{ user.client.last_name }}</h3>
+        </ng-container>
+
+        <p class="user-username">{{ user.username }}</p>
+        <p class="user-email">{{ user.email }}</p>
+        <p class="user-phone-number">{{ user.phone_number }}</p>
+    </ng-container>
+    <ng-container ngProjectAs="controls">
+        <ng-container *ngIf="user.approved">
+            <button routerLink="/account/edit" [queryParams]="{ 'id': user._id }">Ažuriraj</button>
+            <button (click)="remove()">Izbriši</button>
+        </ng-container>
+        
+        <ng-container *ngIf="!user.approved && !user.banned">
+            <button (click)="allow()">Dozvoli</button>
+            <button (click)="ban()">Zabrani</button>
+        </ng-container>
+        <!--
+        <button routerLink="/agencies/show" [queryParams]="{ 'id': agency['_id'] }">Prikaži</button>
+        <button *ngIf="user_type === USER_TYPES.client" routerLink="/agencies/request_job" [queryParams]="{ 'id': agency['_id'] }">Saradnja</button>
+        -->
+    </ng-container>
+    <ng-container ngProjectAs="display">
+        <img class="user-profile-picture" [src]="user['profile_picture']" />
+    </ng-container>
+</app-list-item>

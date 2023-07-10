@@ -1,0 +1,8 @@
+
+<app-list id="users">
+    <app-users-list-item *ngFor="let user of users" [user]="user"></app-users-list-item>
+</app-list>
+
+<div *ngIf="errors.length > 0">
+    <p class="errors" *ngFor="let error of errors">{{ error }}</p>
+</div>

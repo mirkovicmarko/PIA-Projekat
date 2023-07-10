@@ -6,11 +6,9 @@ import { SESSION_DATA, USER_TYPES } from "@consts";
 
 type User = InferSchemaType<typeof UserModel.schema>;
 
-export default function get_info(req, res: Response) {
+export default function get_all(req, res: Response) {
     const user_id = req.session[SESSION_DATA.user_id];
     const user_type = req.session[SESSION_DATA.user_type];
-
-    const requested_user_id = req.body['id'];
 
     if (user_id === undefined) {
         res.statusCode = 401;
@@ -18,20 +16,20 @@ export default function get_info(req, res: Response) {
         return;
     }
 
-    if(requested_user_id !== undefined && user_type != USER_TYPES.admin) {
+    if (user_type !== USER_TYPES.admin) {
         res.statusCode = 403;
         res.send();
         return;
     }
 
-    const id = requested_user_id !== undefined ? requested_user_id : user_id;
+    UserModel.find({ type: { $ne: USER_TYPES.admin } }).then(
+        (users: User[]) => {
+            for(let user of users) {
+                user.password = undefined;
+                user.verification = undefined;
+            }
 
-    UserModel.findOne({ _id: id }).then(
-        (user: User) => {
-            user.password = undefined;
-            user.verification = undefined;
-
-            res.send(user);
+            res.send(users);
         },
         (error) => {
             console.log(error);

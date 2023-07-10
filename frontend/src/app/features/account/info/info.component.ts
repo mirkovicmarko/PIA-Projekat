@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { USER_TYPES } from '@shared/consts';
 
 import User from '@shared/models/user';
@@ -26,10 +26,14 @@ export class InfoComponent implements OnInit {
   edit_mode: boolean = false;
   info_loaded: boolean = false;
 
-  constructor(private accountService: AccountService, private router: Router, private utilService: UtilService) { }
+  requested_user_id: string;
+
+  constructor(private accountService: AccountService, private router: Router, private utilService: UtilService, private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.accountService.get_info().then(
+    this.requested_user_id = this.activedRoute.snapshot.queryParams['id'];
+
+    this.accountService.get_info(this.requested_user_id).then(
         (response: User) => {
           this.user = response;
           this.info_loaded = true;
@@ -59,7 +63,7 @@ export class InfoComponent implements OnInit {
     this.messages = [];
 
     try {
-      await this.accountService.change_info(this.user);
+      await this.accountService.change_info(this.user, this.requested_user_id);
     }
     catch (error) {
       this.errors = error.error;

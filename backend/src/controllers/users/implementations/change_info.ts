@@ -8,21 +8,36 @@ export default function change_info(req, res: Response) {
     const user_id = req.session[SESSION_DATA.user_id];
     const user_type = req.session[SESSION_DATA.user_type];
 
+    const requested_user_id = req.body['id'];
+
     if (user_id === undefined) {
         res.statusCode = 205;
         res.send();
         return;
     }
 
+    if (requested_user_id !== undefined && user_type !== USER_TYPES.admin) {
+        res.statusCode = 403;
+        res.send();
+        return;
+    }
+
+    const id = requested_user_id !== undefined ? requested_user_id : user_id;
+
     const user = new UserModel(req.body['user']);
 
     // Remove any fields not associated with the user type.
     for(let type of Object.keys(USER_TYPES)) {
-        if(type != user_type) user[type] = undefined;
+        if(user_type === USER_TYPES.admin) {
+            if(type != user.type) user[type] = undefined;
+        }
+        else {
+            if(type != user_type) user[type] = undefined;
+        }
     }
 
     // Fields that cannot be edited.
-    user._id = user_id;
+    user._id = id;
     user.username = undefined;
     user.password = undefined;
     user.type = undefined;
@@ -37,8 +52,13 @@ export default function change_info(req, res: Response) {
         return;
     }
 
-    UserModel.findOneAndUpdate({ _id: user_id }, user).then(
-        (_old_user) => {
+    UserModel.findOneAndUpdate({ _id: id }, user).then(
+        (old_user) => {
+            if(!old_user) {
+                res.statusCode = 400;
+                res.send(['Korisnik ne postoji.']);
+                return;
+            }
             res.send();
         },
         (error) => {

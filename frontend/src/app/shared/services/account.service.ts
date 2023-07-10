@@ -60,16 +60,21 @@ export class AccountService {
 
     const post = this.http.post(
       this.endpoint_address + '/register',
-      body
+      body,
+      { withCredentials: true }
     );
 
     await firstValueFrom(post);
   }
 
-  async change_info(user: User) {
+  async change_info(user: User, id: string) {
     const body = {
       user: user
     };
+
+    if(id !== undefined) {
+      body['id'] = id;
+    }
 
     const post = this.http.post(
       this.endpoint_address + '/change_info',
@@ -80,10 +85,16 @@ export class AccountService {
     await firstValueFrom(post);
   }
 
-  get_info() {
+  get_info(id: string) {
+    const body = {};
+
+    if(id !== undefined) {
+      body['id'] = id;
+    }
+
     const post = this.http.post(
       this.endpoint_address + '/get_info',
-      { },
+      body,
       { withCredentials: true }
     );
 
@@ -123,6 +134,41 @@ export class AccountService {
     const post = this.http.post(
       this.endpoint_address + '/logout',
       { },
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post).then(
+      () => this.set_user(),
+      (error: HttpErrorResponse) => { this.set_user(); throw error; }
+    );
+  }
+
+  get_all() {
+    const get = this.http.get(
+      this.endpoint_address + '/get_all',
+      { withCredentials: true }
+    );
+
+    return firstValueFrom(get);
+  }
+
+  async ban(id: string) {
+    const post = this.http.post(
+      this.endpoint_address + '/ban',
+      { id: id },
+      { withCredentials: true }
+    );
+
+    await firstValueFrom(post).then(
+      () => this.set_user(),
+      (error: HttpErrorResponse) => { this.set_user(); throw error; }
+    );
+  }
+
+  async allow(id: string) {
+    const post = this.http.post(
+      this.endpoint_address + '/allow',
+      { id: id },
       { withCredentials: true }
     );
 

@@ -24,5 +24,11 @@ users_router.route('/get_info')
     .post((req: express.Request, res: express.Response) => users_controller.get_info(req, res));
 users_router.route('/change_info')
     .post((req: express.Request, res: express.Response) => users_controller.change_info(req, res));
+users_router.route('/get_all')
+    .get((req: express.Request, res: express.Response) => users_controller.get_all(req, res));
+users_router.route('/ban')
+    .post((req: express.Request, res: express.Response) => users_controller.ban(req, res));
+users_router.route('/allow')
+    .post((req: express.Request, res: express.Response) => users_controller.allow(req, res));
 
 export default users_router;

@@ -3,13 +3,15 @@ import { InferSchemaType } from "mongoose";
 
 import UserModel from '@models/User';
 import registration_validation from '@controllers/users/validations/registration';
-import { USER_TYPES } from '@consts';
+import { SESSION_DATA, USER_TYPES } from '@consts';
 import default_profile_picture_base64 from '@assets/default_profile_picture_base64';
 
 type User = InferSchemaType<typeof UserModel.schema>;
 
 
-export default function register(req: Request, res: Response) {
+export default function register(req, res: Response) {
+    const user_type = req.session[SESSION_DATA.user_type];
+
     const user = req.body['user'];
 
     if(user === undefined) {
@@ -46,7 +48,7 @@ export default function register(req: Request, res: Response) {
     }
 
     new_user.banned = false;
-    new_user.approved = false;
+    new_user.approved = user_type === USER_TYPES.admin;
 
     if(!new_user.profile_picture) {
         new_user.profile_picture = default_profile_picture_base64;

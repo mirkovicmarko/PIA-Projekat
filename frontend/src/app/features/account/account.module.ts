@@ -7,6 +7,7 @@ import { RegistrationModule } from './registration/registration.module';
 import { ForgottenPasswordModule } from './forgotten-password/forgotten-password.module';
 import { ChangePasswordModule } from './change-password/change-password.module';
 import { InfoModule } from './info/info.module';
+import { ListModule } from './list/list.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { InfoModule } from './info/info.module';
     RegistrationModule,
     ForgottenPasswordModule,
     ChangePasswordModule,
-    InfoModule
+    InfoModule,
+    ListModule
   ]
 })
 export class AccountModule { }
