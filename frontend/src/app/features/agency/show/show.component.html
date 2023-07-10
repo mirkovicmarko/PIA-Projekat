@@ -18,6 +18,7 @@
 
             <div class="agency-comment-right-alignment">
                 <div class="agency-comment-header">
+                    <button *ngIf="user_id === comment['author_info']['_id']" (click)="delete_comment()">Obriši</button>
                     <span class="agency-comment-stars">
                         <app-star *ngFor="let fullness of generate_rating_array(comment['rating'])" class="agency-comment-star" [full]="fullness"></app-star>
                     </span>

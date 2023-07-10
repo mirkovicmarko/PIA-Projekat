@@ -54,26 +54,26 @@ export class AccountService {
   }
 
   async register(user: User) {
-    const post_body = {
+    const body = {
       user: user
     };
 
     const post = this.http.post(
       this.endpoint_address + '/register',
-      post_body
+      body
     );
 
     await firstValueFrom(post);
   }
 
   async change_info(user: User) {
-    const post_body = {
+    const body = {
       user: user
     };
 
     const post = this.http.post(
       this.endpoint_address + '/change_info',
-      post_body,
+      body,
       { withCredentials: true }
     );
 

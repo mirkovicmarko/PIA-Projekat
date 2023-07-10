@@ -27,5 +27,26 @@ export class AgencyService {
 
     return firstValueFrom(get);
   }
+
+  rate(agency_id: string, title: string, text: string, rating: number) {
+    const params = {
+      agency_id: agency_id,
+      title: title,
+      text: text,
+      rating: rating
+    };
+    const post = this.http.post(this.endpoint_address + '/rate', params, { withCredentials: true });
+
+    return firstValueFrom(post);
+  }
+
+  delete_rating(agency_id: string) {
+    const params = {
+      agency_id: agency_id
+    };
+    const post = this.http.post(this.endpoint_address + '/delete_rating', params, { withCredentials: true });
+
+    return firstValueFrom(post);
+  }
   
 }

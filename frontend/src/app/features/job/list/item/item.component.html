@@ -59,6 +59,34 @@
         <ng-container *ngIf="user_type === USER_TYPES.client && job['status'] === JOB_STATUSES.finished">
             <button (click)="pay()">Plati</button>
         </ng-container>
+
+        <ng-container *ngIf="user_type === USER_TYPES.client && job['status'] === JOB_STATUSES.paid">
+            <button (click)="rate_modal_open = true">Oceni</button>
+            <app-modal-window *ngIf="rate_modal_open">
+                <table>
+                    <tr>
+                        <td>Naslov:</td>
+                        <td>
+                            <textarea name="rating_title" id="rating_title" cols="30" rows="10" [(ngModel)]="rating.title"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tekst:</td>
+                        <td>
+                            <textarea name="rating_text" id="rating_text" cols="30" rows="10" [(ngModel)]="rating.text"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ocena:</td>
+                        <td>
+                            <input type="number" name="rating_rating" id="rating_rating" min="1" max="5" [(ngModel)]="rating.rating" />
+                        </td>
+                    </tr>
+                </table>
+                
+                <button (click)="rate()">Potvrdi</button>
+            </app-modal-window>
+        </ng-container>
     </ng-container>
     <ng-container ngProjectAs="display">
         <app-objects-show class="job-object-picture" [object]="job['object']" [show_status]="job_active"></app-objects-show>

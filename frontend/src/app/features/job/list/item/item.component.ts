@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { JOB_STATUSES, JOB_STATUSES_GROUPED, USER_TYPES } from '@shared/consts';
 import { AccountService } from '@shared/services/account.service';
+import { AgencyService } from '@shared/services/agency.service';
 import { JobService } from '@shared/services/job.service';
 import { ObjectsChangeConstructionStatusComponent } from '@shared/ui/objects-change-construction-status/objects-change-construction-status.component';
 
@@ -29,6 +30,13 @@ export class ItemComponent implements OnInit {
   protected cancellation_request_modal_open: boolean = false;
   protected cancellation_request_message: string = "";
 
+  protected rate_modal_open: boolean = false;
+  protected rating = {
+    title: '',
+    text: '',
+    rating: 5
+  };
+
   public get USER_TYPES() {
     return USER_TYPES; 
   }
@@ -41,7 +49,7 @@ export class ItemComponent implements OnInit {
     return JOB_STATUSES_GROUPED.undergoing.includes(this.job['status']); 
   }
 
-  constructor(private accountService: AccountService, private jobService: JobService, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private accountService: AccountService, private jobService: JobService, private agencyService: AgencyService) { }
 
   ngOnInit(): void {
     this.user_type = this.accountService.user_type;
@@ -157,6 +165,18 @@ export class ItemComponent implements OnInit {
     this.jobService.cancellation_request(this.job['_id'], this.cancellation_request_message).then(
       () => {
         alert('Uspešno ste poslali zahtev za otkazivanjem.');
+        this.signal_update();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  rate() {
+    this.agencyService.rate(this.job['agency_info']['_id'], this.rating.title, this.rating.text, this.rating.rating).then(
+      () => {
+        alert('Uspešno ste ocenili agenciju.');
         this.signal_update();
       },
       (error: HttpErrorResponse) => {
